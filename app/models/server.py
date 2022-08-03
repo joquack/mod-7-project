@@ -8,6 +8,8 @@ class Server(db.Model):
     server_name = db.Column(db.String(255), nullable=False)
     server_img = db.Column(db.String(255))
 
+    
+
     def to_dict(self):
         return {
             'id': self.id,
