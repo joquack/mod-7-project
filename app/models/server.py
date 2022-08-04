@@ -1,4 +1,5 @@
 from .db import db
+from app.models.server_user import server_users as server_users
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -8,7 +9,7 @@ class Server(db.Model):
     server_name = db.Column(db.String(255), nullable=False)
     server_img = db.Column(db.String(255))
 
-    
+    users = db.relationship('User', secondary=server_users, back_populates='server')
 
     def to_dict(self):
         return {
