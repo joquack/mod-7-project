@@ -10,6 +10,7 @@ class Server(db.Model):
     server_img = db.Column(db.String(255))
 
     users = db.relationship('User', secondary=server_users, back_populates='server')
+    channels = db.relationship('Channel', back_populates='server')
 
     def to_dict(self):
         return {

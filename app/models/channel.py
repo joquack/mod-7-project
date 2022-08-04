@@ -8,6 +8,9 @@ class Channel(db.Model):
     channel_name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255))
 
+    messages = db.relationship('Message', back_populates='channels')
+    servers = db.relationship('Server', back_populates='channels')
+
     def to_dict(self):
         return {
             'id': self.id,

@@ -10,6 +10,8 @@ class Message(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
+    users = db.relationship('User', back_populates='messages')
+    channels = db.relationship('User', back_populates='messages')
 
     def to_dict(self):
         return {
