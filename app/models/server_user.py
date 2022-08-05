@@ -4,4 +4,5 @@ server_users = db.Table(
     'server_users',
      db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
      db.Column('server_id', db.Integer, db.ForeignKey('servers.id'), primary_key=True),
+     db.Column('admin', db.Boolean, default=False)
 )

@@ -7,7 +7,7 @@ class Server(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     server_name = db.Column(db.String(255), nullable=False)
-    server_img = db.Column(db.String(255))
+    server_img = db.Column(db.String(255), default='https://avatars2.githubusercontent.com/u/36101493?s=280&v=4')
 
     users = db.relationship('User', secondary=server_users, back_populates='server')
     channels = db.relationship('Channel', back_populates='server')
