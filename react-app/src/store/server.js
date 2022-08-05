@@ -1,4 +1,5 @@
 const LOAD_SERVERS = 'servers/LOAD'
+const CREATE_SERVER = 'server/CREATE'
 
 const load_servers = servers => ({
     type: LOAD_SERVERS,

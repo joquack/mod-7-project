@@ -7,15 +7,22 @@ import {getAllServers} from '../../src/store/server'
 function Dashboard() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const servers = useSelector(state => state.server)
-    console.log(servers, 'OVER HEREEEEEEEEEEEE')
+    const servers = Object.values(useSelector(state => state.server)).reverse()
+    console.log(servers,'HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
 
     useEffect(() => {
         dispatch(getAllServers())
     }, [dispatch])
 
     return (
+        <>
         <h1>dashboard</h1>
+        {servers && servers.map(server => {
+            return (
+                <div key={server.id}>{server.server_name}</div>
+            )
+        })}
+        </>
     )
 }
 
