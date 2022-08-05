@@ -2,10 +2,10 @@ const LOAD_SERVERS = 'servers/LOAD'
 
 const load_servers = servers => ({
     type: LOAD_SERVERS,
-    servers
+    payload: servers
 })
 
-const getAllServers = () => async dispatch => {
+export const getAllServers = () => async dispatch => {
     const response = await fetch('/api/servers')
 
     if (response.ok) {
@@ -16,15 +16,16 @@ const getAllServers = () => async dispatch => {
 
 const initialState = {}
 
-const serversReducer = (state = initialState, action) => {
-    let newState = {}
+export default function reducer(state = initialState, action) {
+    let newState = {...state}
     switch (action.type) {
         case LOAD_SERVERS:
-            action.servers.forEach(server => {
+            action.payload.servers.forEach(server => {
                 newState[server.id] = server
             })
         return newState
+
+    default:
+        return state
     }
 }
-
-export default serversReducer

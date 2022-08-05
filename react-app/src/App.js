@@ -46,12 +46,12 @@ function App() {
           <User />
         </ProtectedRoute>
 
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
-
         <ProtectedRoute path='/channels/me' exact={true} >
           <Dashboard />
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/' exact={true} >
+          <h1>My Home Page</h1>
         </ProtectedRoute>
 
       </Switch>
