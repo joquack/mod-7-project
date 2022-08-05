@@ -50,7 +50,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
 
-        <ProtectedRoute path='/channels/:userId' exact={true} >
+        <ProtectedRoute path='/channels/me' exact={true} >
           <Dashboard />
         </ProtectedRoute>
 
