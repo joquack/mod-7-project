@@ -1,5 +1,5 @@
 from .db import db
-from app.models.server_user import server_users as server_users
+from app.models.server_user import server_users
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -7,10 +7,10 @@ class Server(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     server_name = db.Column(db.String(255), nullable=False)
-    server_img = db.Column(db.String(255), default='https://avatars2.githubusercontent.com/u/36101493?s=280&v=4')
+    server_img = db.Column(db.Text, default='https://avatars2.githubusercontent.com/u/36101493?s=280&v=4')
 
-    users = db.relationship('User', secondary=server_users, back_populates='server')
-    channels = db.relationship('Channel', back_populates='server')
+    users = db.relationship('User', secondary=server_users, back_populates='servers')
+    channels = db.relationship('Channel', back_populates='servers')
 
     def to_dict(self):
         return {

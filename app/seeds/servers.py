@@ -3,9 +3,15 @@ from app.models import db, Server
 
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
-    server1 = Server(user_id=1, server_name='Test Server', server_img='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png')
-    server2 = Server(user_id=2, server_name='Epic Server')
-    server3 = Server(user_id=2, server_name='Pug Enjoyers', server_img='https://plugins.jetbrains.com/files/7094/91885/icon/pluginIcon.png')
+    server1 = Server(
+        user_id=1, server_name='Test Server', server_img='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png'
+    )
+    server2 = Server(
+        user_id=2, server_name='Epic Server', server_img='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png'
+    )
+    server3 = Server(
+        user_id=2, server_name='Pug Enjoyers', server_img='https://plugins.jetbrains.com/files/7094/91885/icon/pluginIcon.png'
+    )
 
     db.session.add(server1)
     db.session.add(server2)
