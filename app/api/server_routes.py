@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
 from app.models import Server, db
 from app.forms.server_form import ServerForm
-from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
+from app.aws_s3 import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 
 server_routes = Blueprint('server', __name__)
@@ -31,7 +31,7 @@ def add_server():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         if request.files:
-            image = request.files["image"]
+            image = request.files["server_img"]
             if not allowed_file(image.filename):
                 return {"errors":"file type not permitted"}, 400
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useParams, useHistory } from 'react-router-dom';
+// import { NavLink, useParams, useHistory } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
 import {getAllServers} from '../../store/server'
 import {getAllChannels} from '../../store/channel'
-import {createServer} from '../../store/server'
+import ServerFormModal from './ServerFormModal'
+import './server.css'
 
 function ServerList() {
     const dispatch = useDispatch()
@@ -27,10 +28,11 @@ function ServerList() {
             return (
                 <>
                 <div key={server.id}>{server.server_name}</div>
+                <img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img>
                 </>
             )
         })}
-        <button>Create Server</button>
+        <div><ServerFormModal /></div>
         </>
     )
 }

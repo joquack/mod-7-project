@@ -21,10 +21,15 @@ export const getAllServers = () => async dispatch => {
 }
 
 export const createServer = data => async dispatch => {
+    const fData = new FormData()
+    
+    fData.append('user_id', data.user_id)
+    fData.append('server_name', data.server_name)
+    fData.append('server_img', data.server_img)
+
     const response = await fetch(`/api/servers`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
+        body: fData
     })
 
     if(response.ok){

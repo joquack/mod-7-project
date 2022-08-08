@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createServer } from '../../store/server';
+import { getAllServers } from '../../store/server';
 
-function NewServerForm (){
+const NewServerForm = ({setShowModal}) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
@@ -26,7 +27,7 @@ function NewServerForm (){
             server_img: img
         }
 
-        const createdServer = await dispatch(createServer(data))
+        const createdServer = await dispatch(createServer(data)).then(() => getAllServers())
         // .catch(
         //     async(res) => {
         //         const validations = await res.json()
@@ -38,12 +39,13 @@ function NewServerForm (){
         if(createdServer){
             console.log('yooooooooo server created successfully, very epic')
         }
+        else console.log('AHHHHHHHHHHHHHHHHHHHHHH aoihfiaugsfloagelfiuabsf')
     }
 
     return (
         <>
         <h2>Create Server</h2>
-        <form>
+        <form onSubmit={handleCreateServer}>
             {/* <div className='errors'>
                 <ul>
                     {errors.map((error, i) => (
@@ -62,17 +64,17 @@ function NewServerForm (){
                     />
                 </div>
             </label>
+
             <label>
                 <div>Server Img
                 <input className='create-input'
-                    type="text"
-                    placeholder='Server Name'
-                    value={name}
-                    onChange={changeName}
-                    required
+                    type="file"
+                    accept='image/*'
+                    onChange={changeImg}
                     />
                 </div>
             </label>
+            <button type='submit'>Create Server</button>
         </form>
         </>
     )
