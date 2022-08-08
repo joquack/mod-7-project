@@ -21,23 +21,27 @@ export const getAllServers = () => async dispatch => {
 }
 
 export const createServer = data => async dispatch => {
-    const fData = new FormData()
-    
-    fData.append('user_id', data.user_id)
-    fData.append('server_name', data.server_name)
-    fData.append('server_img', data.server_img)
+    const fData = new FormData();
+
+    fData.append('user_id', data.user_id);
+    fData.append('server_name', data.server_name);
+    fData.append('server_img', data.server_img);
+
+    for(let thing of fData){
+        console.log('end my misery', thing)
+    }
 
     const response = await fetch(`/api/servers`, {
         method: 'POST',
         body: fData
     })
-
+    console.log('IM DIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',response)
     if(response.ok){
         const server = await response.json()
         dispatch(create_server(server))
         return server
     }
-  }
+}
 
 const initialState = {}
 
@@ -48,12 +52,13 @@ export default function reducer(state = initialState, action) {
             action.payload.servers.forEach(server => {
                 newState[server.id] = server
             })
-        return newState
+            return newState
 
-        case CREATE_SERVER:
-            return {...state, [action.payload.server.id]: action.payload.server}
+            case CREATE_SERVER:
+                console.log('REDUCERRRR HEREEEEEEEEEEEEEEEEEEEEEE', action)
+                return {...state, [action.payload.id]: action.payload}
 
-    default:
-        return state
-    }
-}
+                default:
+                    return state
+                }
+            }

@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { createServer } from '../../store/server';
-import { getAllServers } from '../../store/server';
+import { createServer, getAllServers } from '../../store/server';
 
 const NewServerForm = ({setShowModal}) => {
     const history = useHistory();
@@ -11,14 +10,19 @@ const NewServerForm = ({setShowModal}) => {
     const userId = user.id
 
     const [name, setName] = useState('')
-    const [img, setImg] = useState('')
+    const [img, setImg] = useState(null)
+    const [imageLoading, setImageLoading] = useState(false);
     const [errors, setErrors] = useState([]);
 
     const changeName = e => setName(e.target.value)
-    const changeImg = e => setImg(e.target.value)
+    const changeImg = e => {
+        const file = e.target.files[0];
+        setImg(file);
+    }
 
     const handleCreateServer = async e => {
         e.preventDefault()
+        setImageLoading(true)
         // setErrors([])
 
         const data = {
@@ -27,7 +31,8 @@ const NewServerForm = ({setShowModal}) => {
             server_img: img
         }
 
-        const createdServer = await dispatch(createServer(data)).then(() => getAllServers())
+        const createdServer = await dispatch(createServer(data))
+        // .then(() => getAllServers())
         // .catch(
         //     async(res) => {
         //         const validations = await res.json()
@@ -37,9 +42,13 @@ const NewServerForm = ({setShowModal}) => {
         //     }
         // )
         if(createdServer){
+            setImageLoading(false)
             console.log('yooooooooo server created successfully, very epic')
         }
-        else console.log('AHHHHHHHHHHHHHHHHHHHHHH aoihfiaugsfloagelfiuabsf')
+        else {
+            setImageLoading(false)
+            console.log('AHHHHHHHHHHHHHHHHHHHHHH aoihfiaugsfloagelfiuabsf')
+        }
     }
 
     return (
@@ -62,6 +71,7 @@ const NewServerForm = ({setShowModal}) => {
                     onChange={changeName}
                     required
                     />
+                    {imageLoading && <h4>Image loading...</h4>}
                 </div>
             </label>
 
