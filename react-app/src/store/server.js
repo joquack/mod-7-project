@@ -26,16 +26,11 @@ export const createServer = data => async dispatch => {
     fData.append('user_id', data.user_id);
     fData.append('server_name', data.server_name);
     fData.append('server_img', data.server_img);
-
-    for(let thing of fData){
-        console.log('end my misery', thing)
-    }
-
-    const response = await fetch(`/api/servers`, {
+    
+    const response = await fetch(`/api/servers/new`, {
         method: 'POST',
         body: fData
     })
-    console.log('IM DIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',response)
     if(response.ok){
         const server = await response.json()
         dispatch(create_server(server))

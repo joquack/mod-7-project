@@ -30,6 +30,7 @@ const NewServerForm = ({setShowModal}) => {
             server_name: name,
             server_img: img
         }
+        console.log('component hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', data)
 
         const createdServer = await dispatch(createServer(data))
         // .then(() => getAllServers())
