@@ -5,6 +5,7 @@ import {getAllServers} from '../../store/server'
 import {getAllChannels} from '../../store/channel'
 import ServerFormModal from './ServerFormModal'
 import './server.css'
+import UpdateServerModal from './UpdateServerModal';
 
 function ServerList() {
     const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function ServerList() {
                 <>
                 <div key={server.id}>{server.server_name}</div>
                 <img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img>
+                <UpdateServerModal id={server.id}/>
                 </>
             )
         })}

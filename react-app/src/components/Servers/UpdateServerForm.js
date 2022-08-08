@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { createServer, getAllServers } from '../../store/server';
+import { updateServer, getAllServers } from '../../store/server';
 
-const NewServerForm = ({setShowModal}) => {
+const UpdateServerForm = ({setShowModal, id}) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
@@ -20,7 +20,7 @@ const NewServerForm = ({setShowModal}) => {
         setImg(file);
     }
 
-    const handleCreateServer = async e => {
+    const handleupdateServer = async e => {
         e.preventDefault()
         setImageLoading(true)
         setErrors([])
@@ -31,7 +31,7 @@ const NewServerForm = ({setShowModal}) => {
             server_img: img
         }
 
-        const createdServer = await dispatch(createServer(data))
+        const updatedServer = await dispatch(updateServer(data, id))
         .then(() => getAllServers())
         .catch(
             async(res) => {
@@ -41,20 +41,11 @@ const NewServerForm = ({setShowModal}) => {
                     setErrors(validations.errors)
             }
         )
-        // if(createdServer){
-        //     setImageLoading(false)
-        //     console.log('yooooooooo server created successfully, very epic')
-        // }
-        // else {
-        //     setImageLoading(false)
-        //     console.log('AHHHHHHHHHHHHHHHHHHHHHH aoihfiaugsfloagelfiuabsf')
-        // }
     }
-
     return (
         <>
-        <h2>Create Server</h2>
-        <form onSubmit={handleCreateServer}>
+        <h2>Update Server</h2>
+        <form onSubmit={handleupdateServer}>
             <div className='errors'>
                 <ul>
                     {errors.map((error, i) => (
@@ -84,10 +75,10 @@ const NewServerForm = ({setShowModal}) => {
                     />
                 </div>
             </label>
-            <button type='submit'>Create Server</button>
+            <button type='submit'>Update Server</button>
         </form>
         </>
     )
 }
 
-export default NewServerForm
+export default UpdateServerForm

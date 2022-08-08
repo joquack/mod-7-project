@@ -55,3 +55,38 @@ def add_server():
 
         return new_server.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@server_routes.route('/edit/<int:id>', methods=["PUT"])
+@login_required
+def update_server(id):
+    form = ServerForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    server = Server.query.get(id)
+
+    if form.validate_on_submit():
+        if request.files:
+            image = request.files["server_img"]
+            if not allowed_file(image.filename):
+                return {"errors":"file type not permitted"}, 400
+
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return upload, 400
+
+                url = upload["url"]
+
+            else:
+                url = server.server_img
+
+            server.server_name = form.data['server_name']
+            server.user_id = form.data['user_id']
+
+            db.session.commit()
+            return server.to_dict()
+
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
