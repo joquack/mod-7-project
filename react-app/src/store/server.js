@@ -21,7 +21,7 @@ export const getAllServers = () => async dispatch => {
 }
 
 export const createServer = data => async dispatch => {
-    const response = await csrfFetch(`/api/servers`, {
+    const response = await fetch(`/api/servers`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
