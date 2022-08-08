@@ -21,3 +21,21 @@ def validation_errors_to_error_messages(validation_errors):
 def server_get():
     servers = Server.query.all()
     return {'servers': [server.to_dict() for server in servers]}
+
+@server_routes.route('', methods =["POST"])
+@login_required
+def add_server():
+    form = ServerForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_server = Server(
+            user_id = form.data["user_id"],
+            server_name = form.data["server_name"],
+            server_img = form.data["server_img"],
+            )
+        db.session.add(new_server)
+        db.session.commit()
+
+        return new_server.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400

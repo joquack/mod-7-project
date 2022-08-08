@@ -2,6 +2,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import LoginFormModal from './auth/LoginFormModal';
+import SignUpFormModal from './auth/SignupFormModal';
 
 const NavBar = () => {
   return (
@@ -12,15 +14,21 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-        </li>
+        </li> */}
         <li>
+          <LoginFormModal />
+        </li>
+        {/* <li>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
+        </li> */}
+        <li>
+          <SignUpFormModal />
         </li>
         <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
