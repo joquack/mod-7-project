@@ -22,7 +22,7 @@ def server_get():
     servers = Server.query.all()
     return {'servers': [server.to_dict() for server in servers]}
 
-@server_routes.route('', methods =["POST"])
+@server_routes.route('', methods=["POST"])
 @login_required
 def add_server():
     form = ServerForm()

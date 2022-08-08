@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
-import {getAllServers} from '../../src/store/server'
-import {getAllChannels} from '../../src/store/channel'
+import {getAllServers} from '../../store/server'
+import {getAllChannels} from '../../store/channel'
+import {createServer} from '../../store/server'
 
 function ServerList() {
     const dispatch = useDispatch()
@@ -15,9 +16,9 @@ function ServerList() {
         dispatch(getAllChannels())
     }, [dispatch])
 
-    const handleCreateServer = async () => {
-        
-    }
+    // const handleCreateServer = async () => {
+    //     e.preventDefault()
+    // }
 
     return (
         <>
@@ -29,7 +30,7 @@ function ServerList() {
                 </>
             )
         })}
-        <button onClick={handleCreateServer}>Create Server</button>
+        <button>Create Server</button>
         </>
     )
 }

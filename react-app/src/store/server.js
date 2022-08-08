@@ -6,6 +6,11 @@ const load_servers = servers => ({
     payload: servers
 })
 
+const create_server = server => ({
+    type: CREATE_SERVER,
+    payload: server
+})
+
 export const getAllServers = () => async dispatch => {
     const response = await fetch('/api/servers')
 
@@ -14,6 +19,20 @@ export const getAllServers = () => async dispatch => {
         dispatch(load_servers(servers))
     }
 }
+
+export const createServer = data => async dispatch => {
+    const response = await csrfFetch(`/api/servers`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    })
+
+    if(response.ok){
+        const server = await response.json()
+        dispatch(create_server(server))
+        return server
+    }
+  }
 
 const initialState = {}
 
@@ -25,6 +44,9 @@ export default function reducer(state = initialState, action) {
                 newState[server.id] = server
             })
         return newState
+
+        case CREATE_SERVER:
+            return {...state, [action.payload.server.id]: action.payload.server}
 
     default:
         return state

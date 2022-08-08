@@ -3,7 +3,7 @@ import { NavLink, useParams, useHistory } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
 import {getAllServers} from '../../src/store/server'
 import {getAllChannels} from '../../src/store/channel'
-import ServerList from './ServerList';
+import ServerList from './Servers/ServerList';
 
 function Dashboard() {
     const dispatch = useDispatch()
