@@ -91,3 +91,10 @@ def update_server(id):
         return server.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@server_routes.route('/delete/<int:id>', methods=['DELETE'])
+def delete_server(id):
+    server = Server.query.get(id)
+    db.session.delete(server)
+    db.session.commit()
+    return server.to_dict()

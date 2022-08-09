@@ -97,6 +97,10 @@ export default function reducer(state = initialState, action) {
         case UPDATE_SERVER:
             return {...state, [action.payload.id]: action.payload}
 
+        case DELETE_SERVER:
+            delete(newState[action.payload.id])
+            return newState
+
         default:
             return state
         }

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { updateServer, getAllServers } from '../../store/server';
+import { updateServer, getAllServers, deleteServer } from '../../store/server';
 
-const UpdateServerForm = ({setShowModal, id}) => {
+const UpdateServerForm = ({ setShowModal, id }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
@@ -15,10 +15,7 @@ const UpdateServerForm = ({setShowModal, id}) => {
     const [errors, setErrors] = useState([]);
 
     const changeName = e => setName(e.target.value)
-    const changeImg = e => {
-        const file = e.target.files[0];
-        setImg(file);
-    }
+    const changeImg = e => setImg(e.target.files[0])
 
     const handleupdateServer = async e => {
         e.preventDefault()
@@ -32,16 +29,23 @@ const UpdateServerForm = ({setShowModal, id}) => {
         }
 
         const updatedServer = await dispatch(updateServer(data, id))
-        .then(() => getAllServers())
-        .catch(
-            async(res) => {
-                const validations = await res.json()
+            .then(() => getAllServers())
+            .catch(
+                async (res) => {
+                    const validations = await res.json()
 
-                if(validations && validations.errors)
-                    setErrors(validations.errors)
-            }
-        )
+                    if (validations && validations.errors)
+                        setErrors(validations.errors)
+                }
+            )
     }
+
+    const handleDeleteServer = e => {
+        e.preventDefault()
+        dispatch(deleteServer(id)).then(() => getAllServers())
+
+    }
+
     return (
         <>
         <h2>Update Server</h2>
@@ -55,12 +59,12 @@ const UpdateServerForm = ({setShowModal, id}) => {
             </div>
             <label>
                 <div>Server Name
-                <input className='create-input'
-                    type="text"
-                    placeholder='Server Name'
-                    value={name}
-                    onChange={changeName}
-                    required
+                    <input className='create-input'
+                        type="text"
+                        placeholder='Server Name'
+                        value={name}
+                        onChange={changeName}
+                        required
                     />
                     {imageLoading && <h4>Image loading...</h4>}
                 </div>
@@ -68,14 +72,15 @@ const UpdateServerForm = ({setShowModal, id}) => {
 
             <label>
                 <div>Server Img
-                <input className='create-input'
-                    type="file"
-                    accept='image/*'
-                    onChange={changeImg}
+                    <input className='create-input'
+                        type="file"
+                        accept='image/*'
+                        onChange={changeImg}
                     />
                 </div>
             </label>
             <button type='submit'>Update Server</button>
+            <button onClick={handleDeleteServer}>Delete Server</button>
         </form>
         </>
     )
