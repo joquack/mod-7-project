@@ -2,5 +2,10 @@
 body {
     background-color: #36393F;
     color: #DCDDDE;
-    margin:0;
+    margin: 0;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: center;
 }

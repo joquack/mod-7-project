@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {getAllServers} from '../../src/store/server'
 import {getAllChannels} from '../../src/store/channel'
 import ServerList from './Servers/ServerList';
+import NavBar from './NavBar';
 
 function Dashboard() {
     const dispatch = useDispatch()
@@ -15,8 +16,11 @@ function Dashboard() {
 
     return (
         <>
-        <h1>welcome to your dashboard</h1>
         <ServerList />
+        <div className='dashboard'>
+            <h1>welcome to your dashboard</h1>
+            <NavBar />
+        </div>
         </>
     )
 }

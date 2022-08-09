@@ -1,4 +1,4 @@
-// import { NavLink, useParams, useHistory } from 'react-router-dom';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import {getAllServers} from '../../store/server'
@@ -6,7 +6,6 @@ import {getAllChannels} from '../../store/channel'
 import ServerFormModal from './ServerFormModal'
 import UpdateServerModal from './UpdateServerModal';
 import './server.css'
-import { NavLink } from 'react-router-dom';
 
 function ServerList() {
     const dispatch = useDispatch()
@@ -26,13 +25,14 @@ function ServerList() {
     return (
         <>
         <div className='server-list'>
-        <h1>Server List component</h1>
+        <NavLink to={'/channels/me'}><img className='server-home' src='https://cdn-icons-png.flaticon.com/512/5968/5968759.png'></img></NavLink>
+
         {servers && servers.map(server => {
             return (
                 <>
                 <div key={server.id}>
                     <NavLink to={`/channels/${server.id}`}><img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img></NavLink>
-                    {server.server_name}
+                    {/* {server.server_name} */}
                     <div>
                         <UpdateServerModal id={server.id}/>
                     </div>
