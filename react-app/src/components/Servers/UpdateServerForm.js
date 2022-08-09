@@ -38,12 +38,15 @@ const UpdateServerForm = ({ setShowModal, id }) => {
                         setErrors(validations.errors)
                 }
             )
+        if(updatedServer){
+            setShowModal(false)
+        }
     }
 
     const handleDeleteServer = e => {
         e.preventDefault()
         dispatch(deleteServer(id)).then(() => getAllServers())
-
+        setShowModal(false)
     }
 
     return (

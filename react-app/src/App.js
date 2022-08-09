@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Dashboard from './components/Dashboard';
 import { authenticate } from './store/session';
+import ChannelList from './components/Channels/Channels';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,10 @@ function App() {
 
         <ProtectedRoute path='/channels/me' exact={true} >
           <Dashboard />
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/channels/:id' exact={true} >
+          <ChannelList />
         </ProtectedRoute>
 
         <ProtectedRoute path='/' exact={true} >

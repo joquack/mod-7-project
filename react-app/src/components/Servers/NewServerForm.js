@@ -41,14 +41,9 @@ const NewServerForm = ({setShowModal}) => {
                     setErrors(validations.errors)
             }
         )
-        // if(createdServer){
-        //     setImageLoading(false)
-        //     console.log('yooooooooo server created successfully, very epic')
-        // }
-        // else {
-        //     setImageLoading(false)
-        //     console.log('AHHHHHHHHHHHHHHHHHHHHHH aoihfiaugsfloagelfiuabsf')
-        // }
+        if(createdServer){
+            setImageLoading(false)
+        }
     }
 
     return (
