@@ -3,8 +3,12 @@ import {useSelector, useDispatch} from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom';
 import {getAllServers} from '../../store/server'
 import {getAllChannels} from '../../store/channel'
+import { io } from 'socket.io-client';
 import ServerList from '../Servers/ServerList';
 import './channels.css'
+import Chat from './Chat';
+
+let socket;
 
 function ChannelList () {
     const dispatch = useDispatch()
@@ -26,6 +30,7 @@ function ChannelList () {
             <div className='sc-servers'>
                 <ServerList />
             </div>
+
             <div className='sc-channels'>
                 {server && <h3>{server.server_name}</h3>}
                 {channels && channels.map(channel => {
@@ -35,6 +40,10 @@ function ChannelList () {
                         </>
                     )
                 })}
+            </div>
+
+            <div className='sc-chatbox'>
+                <Chat />
             </div>
         </div>
         </>

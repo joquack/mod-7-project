@@ -14,3 +14,12 @@
     justify-content:first baseline;
     padding-left: 15px;
 }
+
+.sc-chatbox {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 95vh;
+    color: #FFFFFF;
+    justify-content:first baseline;
+    padding-left: 185px;
+}
