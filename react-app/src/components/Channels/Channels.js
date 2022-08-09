@@ -1,4 +1,3 @@
-// import { NavLink, useParams, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom';
@@ -11,12 +10,24 @@ function ChannelList () {
     const dispatch = useDispatch()
     const {serverId} = useParams()
     const user = useSelector(state => state.session.user)
-    console.log('CHANNELs HEREEEEEEEEEE', serverId)
+    const channels = Object.values(useSelector(state => state.channel)).filter(channel => channel.server_id === Number(serverId))
+    console.log('CHANNELs HEREEEEEEEEEE', channels)
+
     return (
         <>
-        <ServerList />
         <div className='server-channels'>
-            <h1>channels hereeeeee</h1>
+            <div className='sc-servers'>
+                <ServerList />
+            </div>
+            <div className='sc-channels'>
+                {channels && channels.map(channel => {
+                    return (
+                        <>
+                        <h2>{channel.channel_name}</h2>
+                        </>
+                    )
+                })}
+            </div>
         </div>
         </>
     )

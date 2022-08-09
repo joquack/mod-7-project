@@ -11,7 +11,6 @@ function ServerList() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const servers = Object.values(useSelector(state => state.server)).reverse()
-    const channels = Object.values(useSelector(state => state.channel))
 
     useEffect(() => {
         dispatch(getAllServers())

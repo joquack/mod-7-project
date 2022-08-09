@@ -1,4 +1,15 @@
 .server-channels {
     display: flex;
-    justify-content: center;
+    justify-content:auto;
+    flex-direction: row;
+    background-color: #2F3136;
+    width: 312px;
+}
+
+.sc-channels {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    color: #FFFFFF;
+    justify-content:first baseline;
 }
