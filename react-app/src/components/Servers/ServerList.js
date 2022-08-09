@@ -4,8 +4,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import {getAllServers} from '../../store/server'
 import {getAllChannels} from '../../store/channel'
 import ServerFormModal from './ServerFormModal'
-import './server.css'
 import UpdateServerModal from './UpdateServerModal';
+import './server.css'
 
 function ServerList() {
     const dispatch = useDispatch()
