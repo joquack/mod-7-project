@@ -26,6 +26,7 @@ function ChannelList () {
 
     return (
         <>
+        <div className='sidebar'>
         <div className='server-channels'>
             <div className='sc-servers'>
                 <ServerList />
@@ -42,6 +43,7 @@ function ChannelList () {
                 })}
             </div>
 
+        </div>
             <div className='sc-chatbox'>
                 <Chat />
             </div>

@@ -1,6 +1,11 @@
+.sidebar {
+    display: flex;
+    flex-direction: row;
+}
+
 .server-channels {
     display: flex;
-    justify-content:auto;
+    /* justify-content:auto; */
     flex-direction: row;
     background-color: #2F3136;
     width: 312px;
@@ -10,16 +15,21 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 297px;
     color: #FFFFFF;
     justify-content:first baseline;
     padding-left: 15px;
+    inline-size: 150px;
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    /* max-width: 150px; */
 }
 
 .sc-chatbox {
     display: flex;
     flex-direction: column-reverse;
-    height: 95vh;
+    height: 97vh;
+    width: 69vw;
     color: #FFFFFF;
-    justify-content:first baseline;
-    padding-left: 185px;
+    padding-left: 20px;
 }
