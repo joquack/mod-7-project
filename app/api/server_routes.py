@@ -83,10 +83,10 @@ def update_server(id):
             else:
                 url = server.server_img
 
-            server.server_name = form.data['server_name']
-            server.user_id = form.data['user_id']
+        server.server_name = form.data['server_name']
+        server.user_id = form.data['user_id']
 
-            db.session.commit()
-            return server.to_dict()
+        db.session.commit()
+        return server.to_dict()
 
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
