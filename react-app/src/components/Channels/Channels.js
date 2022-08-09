@@ -9,8 +9,10 @@ import ServerList from '../Servers/ServerList';
 function ChannelList () {
     return (
         <>
-        <ServerList />
-        <h2>channels here</h2>
+        <div className='server-channels'>
+            <ServerList />
+            <h2>channels here</h2>
+        </div>
         </>
     )
 }

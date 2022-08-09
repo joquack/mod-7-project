@@ -1,1 +1,6 @@
 /* TODO Add site wide styles */
+body {
+    background-color: #36393F;
+    color: #DCDDDE;
+    margin:0;
+}

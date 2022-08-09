@@ -25,6 +25,7 @@ function ServerList() {
 
     return (
         <>
+        <div className='server-list'>
         <h1>Server List component</h1>
         {servers && servers.map(server => {
             return (
@@ -40,6 +41,7 @@ function ServerList() {
             )
         })}
         <div><ServerFormModal /></div>
+        </div>
         </>
     )
 }

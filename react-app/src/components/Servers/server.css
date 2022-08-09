@@ -1,3 +1,12 @@
+.server-list {
+    background-color: #202225;
+    display: flex;
+    flex-direction: column;
+    flex: 0.15;
+    height: 100vh;
+    position: absolute;
+}
+
 .server-list-img {
     height: 48px;
     width: 48px

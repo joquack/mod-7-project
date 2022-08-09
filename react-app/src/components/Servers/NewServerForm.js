@@ -42,7 +42,7 @@ const NewServerForm = ({setShowModal}) => {
             }
         )
         if(createdServer){
-            setImageLoading(false)
+            setShowModal(false)
         }
     }
 
