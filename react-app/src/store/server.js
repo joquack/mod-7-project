@@ -1,6 +1,7 @@
 const LOAD_SERVERS = 'servers/LOAD'
 const CREATE_SERVER = 'server/CREATE'
 const UPDATE_SERVER = 'server/UPDATE'
+const DELETE_SERVER = 'server/DELETE'
 
 const load_servers = servers => ({
     type: LOAD_SERVERS,
@@ -13,8 +14,13 @@ const create_server = server => ({
 })
 
 const update_server = server => ({
-    type: CREATE_SERVER,
+    type: UPDATE_SERVER,
     payload: server
+})
+
+const delete_server = serverId => ({
+    type: DELETE_SERVER,
+    payload: serverId
 })
 
 export const getAllServers = () => async dispatch => {
@@ -61,7 +67,18 @@ export const updateServer = (data, id) => async dispatch => {
         dispatch(update_server(server))
         return server
     }
-};
+}
+
+export const deleteServer = serverId => async dispatch => {
+    const response = await fetch(`/api/servers/delete/${serverId}`, {
+        method: 'DELETE'
+    })
+
+    if(response.ok){
+        const deletedServer = await response.json()
+        dispatch(delete_server(deletedServer))
+    }
+}
 
 const initialState = {}
 
@@ -74,13 +91,13 @@ export default function reducer(state = initialState, action) {
             })
             return newState
 
-            case CREATE_SERVER:
-                return {...state, [action.payload.id]: action.payload}
+        case CREATE_SERVER:
+            return {...state, [action.payload.id]: action.payload}
 
-            case UPDATE_SERVER:
-                return {...state, [action.payload.id]: action.payload}
+        case UPDATE_SERVER:
+            return {...state, [action.payload.id]: action.payload}
 
-            default:
-                return state
-            }
-            }
+        default:
+            return state
+        }
+    }
