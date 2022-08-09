@@ -64,6 +64,7 @@ def update_server(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     server = Server.query.get(id)
+    print('BACKEND HEREEEEEEEEEEEEEEEEEEEEEEEE', server)
 
     if form.validate_on_submit():
         if request.files:
@@ -72,19 +73,19 @@ def update_server(id):
                 return {"errors":"file type not permitted"}, 400
 
             image.filename = get_unique_filename(image.filename)
-
             upload = upload_file_to_s3(image)
 
             if "url" not in upload:
                 return upload, 400
 
-                url = upload["url"]
+            url = upload["url"]
 
-            else:
-                url = server.server_img
+        else:
+            url = server.server_img
 
-        server.server_name = form.data['server_name']
         server.user_id = form.data['user_id']
+        server.server_name = form.data['server_name']
+        server.server_img = url
 
         db.session.commit()
         return server.to_dict()

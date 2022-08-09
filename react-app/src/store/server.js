@@ -47,6 +47,7 @@ export const createServer = data => async dispatch => {
 export const updateServer = (data, id) => async dispatch => {
     const fData = new FormData();
 
+    fData.append('user_id', data.user_id);
     fData.append('server_name', data.server_name);
     fData.append('server_img', data.server_img);
 
