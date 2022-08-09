@@ -1,6 +1,6 @@
-import { NavLink, useParams, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 import {getAllServers} from '../../store/server'
 import {getAllChannels} from '../../store/channel'
 import ServerFormModal from './ServerFormModal'
@@ -17,10 +17,6 @@ function ServerList() {
         dispatch(getAllChannels())
     }, [dispatch])
 
-    // const handleCreateServer = async () => {
-    //     e.preventDefault()
-    // }
-
     return (
         <>
         <div className='server-list'>
@@ -30,7 +26,9 @@ function ServerList() {
             return (
                 <>
                 <div key={server.id}>
-                    <NavLink to={`/channels/${server.id}`}><img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img></NavLink>
+                    <NavLink to={`/channels/${server.id}`}>
+                        <img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img>
+                    </NavLink>
                     {/* {server.server_name} */}
                     <div>
                         <UpdateServerModal id={server.id}/>

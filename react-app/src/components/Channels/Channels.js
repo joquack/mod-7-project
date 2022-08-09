@@ -9,9 +9,16 @@ import './channels.css'
 function ChannelList () {
     const dispatch = useDispatch()
     const {serverId} = useParams()
-    const user = useSelector(state => state.session.user)
-    const channels = Object.values(useSelector(state => state.channel)).filter(channel => channel.server_id === Number(serverId))
-    console.log('CHANNELs HEREEEEEEEEEE', channels)
+
+    const user = useSelector(state => state?.session.user)
+    const server = Object.values(useSelector(state => state?.server)).filter(server => server?.id === Number(serverId))[0]
+    const channels = Object.values(useSelector(state => state?.channel)).filter(channel => channel?.server_id === Number(serverId))
+    console.log('CHANNELs HEREEEEEEEEEE', server)
+
+    useEffect(() => {
+        dispatch(getAllServers())
+        dispatch(getAllChannels())
+    }, [dispatch])
 
     return (
         <>
@@ -20,10 +27,11 @@ function ChannelList () {
                 <ServerList />
             </div>
             <div className='sc-channels'>
+                {server && <h3>{server.server_name}</h3>}
                 {channels && channels.map(channel => {
                     return (
                         <>
-                        <h2>{channel.channel_name}</h2>
+                        <h3>{channel.channel_name}</h3>
                         </>
                     )
                 })}

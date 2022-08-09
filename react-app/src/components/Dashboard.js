@@ -16,10 +16,15 @@ function Dashboard() {
 
     return (
         <>
-        <ServerList />
         <div className='dashboard'>
-            <h1>welcome to your dashboard</h1>
-            <NavBar />
+            <div className='d-servers'>
+                <ServerList />
+            </div>
+
+            <div className='d-nav'>
+                <h1>welcome to your dashboard</h1>
+                <NavBar />
+            </div>
         </div>
         </>
     )
