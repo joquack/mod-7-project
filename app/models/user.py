@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    avatar = db.Column(db.String(255))
 
     messages = db.relationship('Message', back_populates='users')
     servers = db.relationship('Server', secondary=server_users, back_populates='users')
