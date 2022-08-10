@@ -4,7 +4,7 @@ from app.models import Message, db
 from app.forms.message_form import MessageForm
 from app.aws_s3 import (upload_file_to_s3, allowed_file, get_unique_filename)
 
-server_routes = Blueprint('server', __name__)
+message_routes = Blueprint('message', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -20,4 +20,3 @@ def validation_errors_to_error_messages(validation_errors):
 def message_get():
     messages = Message.query.all()
     return {'messages': [message.to_dict() for message in messages]}
-
