@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { createMessage } from "../../store/message";
+
 import { io } from 'socket.io-client';
 let socket;
 
 const Chat = () => {
+    const dispatch = useDispatch()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
+    const  {channelId} = useParams()
+    // console.log('asdjflasjdflasdjfasdfj', user.id)
 
     useEffect(() => {
         // open socket connection
@@ -26,9 +32,18 @@ const Chat = () => {
         setChatInput(e.target.value)
     };
 
-    const sendChat = (e) => {
+    const sendChat = async (e) => {
         e.preventDefault()
-        socket.emit("chat", { user: user.username, msg: chatInput });
+        const data = {
+            user_id: user.id,
+            channel_id: channelId,
+            body: chatInput
+        }
+        const newMessage = await dispatch(createMessage(data))
+
+        if(newMessage){
+            socket.emit("chat", { user: user.username, msg: chatInput });
+        }
         setChatInput("")
     }
 
