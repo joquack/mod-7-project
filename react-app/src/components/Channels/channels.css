@@ -19,7 +19,7 @@
     color: #FFFFFF;
     justify-content:first baseline;
     padding-left: 15px;
-    inline-size: 150px;
+    inline-size: 210px;
     overflow: hidden;
     /* text-overflow: ellipsis; */
     /* max-width: 150px; */
@@ -32,4 +32,24 @@
     width: 69vw;
     color: #FFFFFF;
     padding-left: 20px;
+}
+
+.server-name {
+    color:#F6F6F7;
+}
+
+.channel-link {
+    height: 50px;
+    width: 1000px;
+    overflow: hidden;
+    text-decoration: none;
+    white-space: nowrap;
+    color:#A3A6AA;
+    vertical-align: baseline;
+    line-height:15px;
+}
+.channel-link:hover {
+    background-color: #4F545C99;
+    color: #DCDDDE;
+    border-radius: 4px;
 }
