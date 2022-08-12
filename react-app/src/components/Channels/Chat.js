@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { createMessage } from "../../store/message";
+import { createMessage,getAllMessages } from "../../store/message";
 
 import { io } from 'socket.io-client';
 let socket;
@@ -12,7 +12,8 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
     const  {channelId} = useParams()
-    // console.log('asdjflasjdflasdjfasdfj', user.id)
+    const msgs = Object.values(useSelector(state => state.message))
+    // console.log('*************************', msgs)
 
     useEffect(() => {
         // open socket connection
@@ -27,6 +28,10 @@ const Chat = () => {
             socket.disconnect()
         })
     }, [])
+
+    useEffect(() => {
+        getAllMessages()
+    },[dispatch])
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)

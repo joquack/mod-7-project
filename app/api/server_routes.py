@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
-from app.models import Server, db
+from app.models import Server, db, Channel
 from app.forms.server_form import ServerForm
 from app.aws_s3 import (upload_file_to_s3, allowed_file, get_unique_filename)
 
@@ -53,7 +53,17 @@ def add_server():
         db.session.add(new_server)
         db.session.commit()
 
+        new_channel = Channel(
+            server_id = new_server.id,
+            channel_name = 'general',
+            description = 'general chat'
+        )
+
+        db.session.add(new_channel)
+        db.session.commit()
+
         return new_server.to_dict()
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @server_routes.route('/edit/<int:id>', methods=["PUT"])
@@ -64,7 +74,6 @@ def update_server(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     server = Server.query.get(id)
-    print('BACKEND HEREEEEEEEEEEEEEEEEEEEEEEEE', server)
 
     if form.validate_on_submit():
         if request.files:

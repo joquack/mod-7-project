@@ -40,3 +40,22 @@ def message_post():
 
         return new_message.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@message_routes.route('/edit/<int:id>', methods=['PUT'])
+def message_update(id):
+    form = MessageForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    message = Message.query.get(id)
+
+    if form.validate_on_submit():
+        message.user_id = form.data['user_id']
+        message.channel_id = form.data['channel_id']
+        message.body = form.data['body']
+        message.edited = True
+
+        db.session.commit()
+
+        return message.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

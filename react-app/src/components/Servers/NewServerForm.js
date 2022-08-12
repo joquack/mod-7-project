@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createServer, getAllServers } from '../../store/server';
+import { getAllChannels } from '../../store/channel';
 
 const NewServerForm = ({setShowModal}) => {
     const history = useHistory();
@@ -13,6 +14,7 @@ const NewServerForm = ({setShowModal}) => {
     const [img, setImg] = useState(null)
     const [imageLoading, setImageLoading] = useState(false);
     const [errors, setErrors] = useState([]);
+
 
     const changeName = e => setName(e.target.value)
     const changeImg = e => {
@@ -42,7 +44,9 @@ const NewServerForm = ({setShowModal}) => {
             }
         )
         if(createdServer){
+            // console.log('WAWWAWWWAWWWAWAWAWWAWWWWAW',createdServer)
             setShowModal(false)
+            history.push(`/channels/${createdServer.id}`)
         }
     }
 

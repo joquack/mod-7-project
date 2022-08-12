@@ -10,12 +10,13 @@ class Server(db.Model):
     server_img = db.Column(db.Text, default='https://avatars2.githubusercontent.com/u/36101493?s=280&v=4')
 
     users = db.relationship('User', secondary=server_users, back_populates='servers')
-    channels = db.relationship('Channel', back_populates='servers')
+    channels = db.relationship('Channel', back_populates='servers', cascade='delete')
 
     def to_dict(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
             'server_name': self.server_name,
-            'server_img': self.server_img
+            'server_img': self.server_img,
+            'channels': [channel.to_dict() for channel in self.channels]
         }
