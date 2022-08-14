@@ -10,6 +10,7 @@ import User from './components/User';
 import Dashboard from './components/Dashboard';
 import { authenticate } from './store/session';
 import ChannelList from './components/Channels/Channels';
+import ServerHome from './components/Servers/ServerHome';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,7 +54,7 @@ function App() {
         </ProtectedRoute>
 
         <ProtectedRoute path='/channels/:serverId' exact={true}>
-          <ChannelList />
+          <ServerHome />
         </ProtectedRoute>
 
         <ProtectedRoute path='/channels/:serverId/:channelId' exact={true}>

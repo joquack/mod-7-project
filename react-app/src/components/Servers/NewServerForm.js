@@ -35,37 +35,39 @@ const NewServerForm = ({setShowModal}) => {
 
 
         const createdServer = await dispatch(createServer(data))
-        // .then(() => getAllServers())
-        // .catch(
-        //     async(res) => {
-        //         const validations = await res.json()
 
-        //         if(validations && validations.errors)
-        //         setErrors(validations.errors)
-        //     }
-        // )
-            if(createdServer){
-                const defaultChannelData = {
-                    server_id: createdServer.id,
-                    channel_name: 'general',
-                    description: 'general chat'
+        await dispatch(getAllServers())
+        .catch(
+            async(res) => {
+                const validations = await res.json()
+
+                if(validations && validations.errors)
+                setErrors(validations.errors)
+            }
+        )
+        if(createdServer){
+            const defaultChannelData = {
+                server_id: createdServer.id,
+                channel_name: 'general',
+                description: 'general chat'
+            }
+
+            const defaultChannel = await dispatch(createChannel(defaultChannelData))
+            await dispatch(getAllChannels())
+            .catch(
+                async(res) => {
+                    const validations = await res.json()
+
+                    if(validations && validations.errors)
+                    setErrors(validations.errors)
                 }
-
-                const defaultChannel = await dispatch(createChannel(defaultChannelData))
-                // .then(() => getAllChannels())
-                // .catch(
-                //     async(res) => {
-                //         const validations = await res.json()
-
-                //         if(validations && validations.errors)
-                //         setErrors(validations.errors)
-                //     }
-                // )
-                if(createdServer && defaultChannel){
-                    console.log('OVER EHEREEEEEEEEEE', createdServer, defaultChannel)
-                    setShowModal(false)
-                    history.push(`/channels/${createdServer.id}/${defaultChannel.id}`)
-                }
+            )
+            
+            if(createdServer && defaultChannel){
+                console.log('OVER EHEREEEEEEEEEE', createdServer, defaultChannel)
+                setShowModal(false)
+                history.push(`/channels/${createdServer.id}/${defaultChannel.id}`)
+            }
         }
     }
 
