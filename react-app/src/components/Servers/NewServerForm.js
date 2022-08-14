@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createServer, getAllServers } from '../../store/server';
-import { getAllChannels } from '../../store/channel';
+import { getAllChannels, createChannel } from '../../store/channel';
 
 const NewServerForm = ({setShowModal}) => {
     const history = useHistory();
@@ -33,20 +33,39 @@ const NewServerForm = ({setShowModal}) => {
             server_img: img
         }
 
-        const createdServer = await dispatch(createServer(data))
-        .then(() => getAllServers())
-        .catch(
-            async(res) => {
-                const validations = await res.json()
 
-                if(validations && validations.errors)
-                    setErrors(validations.errors)
-            }
-        )
-        if(createdServer){
-            // console.log('WAWWAWWWAWWWAWAWAWWAWWWWAW',createdServer)
-            setShowModal(false)
-            history.push(`/channels/${createdServer.id}`)
+        const createdServer = await dispatch(createServer(data))
+        // .then(() => getAllServers())
+        // .catch(
+        //     async(res) => {
+        //         const validations = await res.json()
+
+        //         if(validations && validations.errors)
+        //         setErrors(validations.errors)
+        //     }
+        // )
+            if(createdServer){
+                const defaultChannelData = {
+                    server_id: createdServer.id,
+                    channel_name: 'general',
+                    description: 'general chat'
+                }
+
+                const defaultChannel = await dispatch(createChannel(defaultChannelData))
+                // .then(() => getAllChannels())
+                // .catch(
+                //     async(res) => {
+                //         const validations = await res.json()
+
+                //         if(validations && validations.errors)
+                //         setErrors(validations.errors)
+                //     }
+                // )
+                if(createdServer && defaultChannel){
+                    console.log('OVER EHEREEEEEEEEEE', createdServer, defaultChannel)
+                    setShowModal(false)
+                    history.push(`/channels/${createdServer.id}/${defaultChannel.id}`)
+                }
         }
     }
 

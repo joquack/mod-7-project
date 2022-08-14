@@ -92,10 +92,6 @@ export default function reducer(state = initialState, action) {
             return newState
 
         case CREATE_SERVER:
-            // action.payload.channels.forEach(channel => {
-            //     newState[channel.id] = channel
-            // })
-            // console.log('reducer here',newState)
             return {...state, [action.payload.id]: action.payload}
 
         case UPDATE_SERVER:

@@ -1,8 +1,14 @@
 const LOAD_CHANNELS = 'channels/LOAD'
+const CREATE_CHANNEL = 'channel/CREATE'
 
 const load_channels = channels => ({
     type: LOAD_CHANNELS,
     payload: channels
+})
+
+const create_channel = channel => ({
+    type: CREATE_CHANNEL,
+    payload: channel
 })
 
 export const getAllChannels = () => async dispatch => {
@@ -14,6 +20,20 @@ export const getAllChannels = () => async dispatch => {
     }
 }
 
+export const createChannel = data => async dispatch => {
+    const response = await fetch(`/api/channels/new`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    })
+
+    if(response.ok){
+        const channel = await response.json()
+        dispatch(create_channel(channel))
+        return channel
+    }
+  }
+
 const initialState = {}
 
 export default function reducer(state = initialState, action) {
@@ -24,6 +44,9 @@ export default function reducer(state = initialState, action) {
                 newState[channel.id] = channel
             })
         return newState
+
+        case CREATE_CHANNEL:
+            return {...state, [action.payload.id]: action.payload}
 
     default:
         return state
