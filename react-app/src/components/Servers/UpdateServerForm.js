@@ -43,9 +43,9 @@ const UpdateServerForm = ({ setShowModal, id }) => {
         }
     }
 
-    const handleDeleteServer = e => {
+    const handleDeleteServer = async e => {
         e.preventDefault()
-        dispatch(deleteServer(id)).then(() => getAllServers())
+        await dispatch(deleteServer(id)).then(() => getAllServers())
         setShowModal(false)
     }
 
