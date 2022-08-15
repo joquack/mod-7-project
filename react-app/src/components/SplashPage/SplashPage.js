@@ -26,7 +26,7 @@ function SplashPage() {
                 <div className='top-box'>
                     <div className='header-info'>
                         <div className='logo'>
-                            <img className='logo-img' src='./duck.png' alt='logo'></img>
+                            <img className='logo-img' src={require('./duck.png').default} alt='logo'></img>
                             <div className='logo-text'>Quackord</div>
                         </div>
                         <a href='https://github.com/joquack/mod-7-project' target="_blank" rel="noopener noreferrer">Clone this repo</a>

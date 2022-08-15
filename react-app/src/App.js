@@ -36,7 +36,6 @@ function App() {
         </Route>
 
         <Route path='/login' exact={true}>
-          <NavBar />
           <LoginForm />
         </Route>
 

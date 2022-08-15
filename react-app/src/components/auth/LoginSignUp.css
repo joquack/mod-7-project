@@ -1,0 +1,16 @@
+.auth-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-home {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.back-home:hover {
+    text-decoration: underline;
+}
