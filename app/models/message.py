@@ -11,7 +11,7 @@ class Message(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now(), nullable=False)
     edited = db.Column(db.Boolean, default=False)
 
-    users = db.relationship('User', back_populates='messages')
+    users = db.relationship('User', back_populates='messages', lazy='subquery')
     channels = db.relationship('Channel', back_populates='messages')
 
     def to_dict(self):

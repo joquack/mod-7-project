@@ -14,7 +14,6 @@ const NewServerForm = ({setShowModal}) => {
     const [img, setImg] = useState(null)
     const [imageLoading, setImageLoading] = useState(false);
     const [errors, setErrors] = useState([]);
-    // console.log(img)
 
     useEffect(() => {
         let errArr = []

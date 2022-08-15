@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import { authenticate } from './store/session';
 import ChannelList from './components/Channels/Channels';
 import ServerHome from './components/Servers/ServerHome';
+import SplashPage from './components/SplashPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -62,7 +63,7 @@ function App() {
         </ProtectedRoute>
 
         <ProtectedRoute path='/' exact={true}>
-          <h1>My Home Page</h1>
+          <SplashPage />
           <NavBar />
         </ProtectedRoute>
 

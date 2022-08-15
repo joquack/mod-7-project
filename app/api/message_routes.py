@@ -59,3 +59,11 @@ def message_update(id):
 
         return message.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@message_routes.route('/delete/<int:id>', methods=['DELETE'])
+def delete_message(id):
+    message = Message.query.get(id)
+    print('BACKEND HEREEEEEEEEEEE*******', message.to_dict())
+    db.session.delete(message)
+    db.session.commit()
+    return message.to_dict()

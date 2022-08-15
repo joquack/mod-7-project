@@ -55,3 +55,24 @@
     color: #DCDDDE;
     border-radius: 4px;
 }
+
+.chat-input {
+    background-color:#40444B;
+    height: 40px;
+    overflow-wrap: break-word;
+    color: #B9BBBE;
+    font-size: 16px;
+    border-style: none;
+    border-radius: 6px;
+}
+
+.asdf input {
+    width: 100%;
+}
+
+.cancel-edit {
+    background-color: transparent;
+    border: none;
+    color: #00AFF4;
+    font-size: 12px;
+}

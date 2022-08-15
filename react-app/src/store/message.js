@@ -67,6 +67,8 @@ export const deleteMessage = messageId => async dispatch => {
         method: 'DELETE'
     })
 
+    console.log('REDUCEER HEREEEEEEEEEEEEEEEEEEEEE', response)
+
     if(response.ok){
         const deletedMessage = await response.json()
         dispatch(delete_message(deletedMessage))
