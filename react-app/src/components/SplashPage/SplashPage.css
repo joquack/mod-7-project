@@ -1,16 +1,31 @@
 .banner-header {
+    /* display: flex;
+    align-items: flex-end;
     width: 100vw;
-    height: auto;
+    height: auto; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    height: 626px;
+    z-index: -1;
+    background: url('./01.svg');
+    background-color: #404EED
+}
+
+.banner-img-center {
+    background: url('./01.svg');
 }
 
 .banner-img-1 {
     background: url('./1.svg');
+    width: 690px;
+    height: 350px;
 }
+
 
 .banner-img-2 {
-    background: url('./01.svg');
-}
-
-.banner-img-3 {
     background: url('./2.svg');
+    width: 615px;
+    height: 360px;
 }

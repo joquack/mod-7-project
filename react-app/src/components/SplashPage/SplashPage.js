@@ -7,8 +7,8 @@ function SplashPage() {
         <>
         <div className="banner-header">
             <div className="banner-img-1"></div>
+            <div className="banner-img-center"></div>
             <div className="banner-img-2"></div>
-            <div className="banner-img-3"></div>
         </div>
         </>
     )
