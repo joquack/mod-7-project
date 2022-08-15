@@ -31,6 +31,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path='/' exact={true}>
+          <SplashPage />
+        </Route>
 
         <Route path='/login' exact={true}>
           <NavBar />
@@ -62,9 +65,6 @@ function App() {
           <ChannelList />
         </ProtectedRoute>
 
-        <ProtectedRoute path='/' exact={true}>
-          <SplashPage />
-        </ProtectedRoute>
 
       </Switch>
     </BrowserRouter>

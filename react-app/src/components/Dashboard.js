@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {getAllServers} from '../../src/store/server'
 import {getAllChannels} from '../../src/store/channel'
 import ServerList from './Servers/ServerList';
+import LogoutButton from './auth/LogoutButton';
 import NavBar from './NavBar';
 
 function Dashboard() {
@@ -22,8 +23,10 @@ function Dashboard() {
             </div>
 
             <div className='d-nav'>
+                <div>
+                    <LogoutButton />
+                </div>
                 <h1>welcome to your dashboard</h1>
-                <NavBar />
             </div>
         </div>
         </>

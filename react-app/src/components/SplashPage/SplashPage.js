@@ -3,6 +3,16 @@ import { NavLink, useHistory } from 'react-router-dom';
 import './SplashPage.css'
 
 function SplashPage() {
+    const history = useHistory()
+
+    const loginButton = async e => {
+        history.push('/login')
+    }
+
+    const signUpButton = async e => {
+        history.push('/signup')
+    }
+
     return(
         <>
         <div className='splash-page'>
@@ -15,15 +25,31 @@ function SplashPage() {
             <div className='top'>
                 <div className='top-box'>
                     <div className='header-info'>
-                        <h2>Logo</h2>
+                        <div className='logo'>
+                            <img className='logo-img' src='./duck.png' alt='logo'></img>
+                            <div className='logo-text'>Quackord</div>
+                        </div>
                         <a href='https://github.com/joquack/mod-7-project' target="_blank" rel="noopener noreferrer">Clone this repo</a>
-                        <button>Login</button>
+                        <div className='nav-buttons'>
+                            <button onClick={loginButton}>Login</button>
+                            <button onClick={signUpButton}>Sign up</button>
+                        </div>
+                    </div>
+                    <div className='splash-words'>
+                        <h1>IMAGINE A PLACE...</h1>
+                        <p>...where you can belong to a school club, a gaming group, or a worldwide art community.
+                             Where just you and a handful of friends can spend time together.
+                              A place that makes it easy to talk every day and hang out more often.
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div className='bottom'>
-                <h2>below banner</h2>
+                <h1>Create an invite-only place where you belong</h1>
+                <p>Discord servers are organized into topic-based channels where you can collaborate,
+                     share, and just talk about your day without clogging up a group chat.
+                     </p>
             </div>
 
             <div className='footer'>

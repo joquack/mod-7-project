@@ -12,3 +12,16 @@ body {
     justify-content: center;
     margin: 0;
 }
+
+.d-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 90vw;
+    height: 50px;
+    margin: 10px;
+}
+.d-nav button {
+    margin-top: 35px;
+}
