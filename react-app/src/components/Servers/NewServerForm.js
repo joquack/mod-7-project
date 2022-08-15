@@ -62,9 +62,8 @@ const NewServerForm = ({setShowModal}) => {
                     setErrors(validations.errors)
                 }
             )
-            
+
             if(createdServer && defaultChannel){
-                console.log('OVER EHEREEEEEEEEEE', createdServer, defaultChannel)
                 setShowModal(false)
                 history.push(`/channels/${createdServer.id}/${defaultChannel.id}`)
             }

@@ -10,6 +10,7 @@ import './server.css'
 function ServerList() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+    const userId = user.id
     const servers = Object.values(useSelector(state => state.server)).reverse()
     const channels = Object.values(useSelector(state => state?.channel))
 
@@ -30,9 +31,12 @@ function ServerList() {
                         <NavLink to={`/channels/${server.id}`}>
                             <img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img>
                         </NavLink>
-                        <div>
+                    </div>
+                    <div>
+                        {userId && server.user_id === userId ?
                             <UpdateServerModal id={server.id}/>
-                        </div>
+                            : <></>
+                        }
                     </div>
                     </>
                 )

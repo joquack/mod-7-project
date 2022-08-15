@@ -8,7 +8,7 @@ class Channel(db.Model):
     channel_name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255))
 
-    messages = db.relationship('Message', back_populates='channels')
+    messages = db.relationship('Message', back_populates='channels', cascade='delete')
     servers = db.relationship('Server', back_populates='channels')
 
     def to_dict(self):
