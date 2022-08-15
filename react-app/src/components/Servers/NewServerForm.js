@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createServer, getAllServers } from '../../store/server';
@@ -14,7 +14,21 @@ const NewServerForm = ({setShowModal}) => {
     const [img, setImg] = useState(null)
     const [imageLoading, setImageLoading] = useState(false);
     const [errors, setErrors] = useState([]);
+    // console.log(img)
 
+    useEffect(() => {
+        let errArr = []
+        if(name.length == 0)
+            errArr.push('Name cannot be empty')
+
+        if(name.length > 255)
+            errArr.push('Name cannot be more that 255')
+
+        if(img && !((/\.(gif|jpe?g|pdf|png|)$/i).test(img.name)))
+            errArr.push('Not a valid file type')
+
+        setErrors(errArr)
+    }, [name, img])
 
     const changeName = e => setName(e.target.value)
     const changeImg = e => {
@@ -33,18 +47,9 @@ const NewServerForm = ({setShowModal}) => {
             server_img: img
         }
 
-
         const createdServer = await dispatch(createServer(data))
-
         await dispatch(getAllServers())
-        .catch(
-            async(res) => {
-                const validations = await res.json()
 
-                if(validations && validations.errors)
-                setErrors(validations.errors)
-            }
-        )
         if(createdServer){
             const defaultChannelData = {
                 server_id: createdServer.id,
@@ -54,18 +59,10 @@ const NewServerForm = ({setShowModal}) => {
 
             const defaultChannel = await dispatch(createChannel(defaultChannelData))
             await dispatch(getAllChannels())
-            .catch(
-                async(res) => {
-                    const validations = await res.json()
-
-                    if(validations && validations.errors)
-                    setErrors(validations.errors)
-                }
-            )
 
             if(createdServer && defaultChannel){
                 setShowModal(false)
-                history.push(`/channels/${createdServer.id}/${defaultChannel.id}`)
+                history.push(`/channels/${createdServer.id}`)
             }
         }
     }
@@ -82,7 +79,7 @@ const NewServerForm = ({setShowModal}) => {
                 </ul>
             </div>
             <label>
-                <div>Server Name
+                <div className='form-input'>Server Name *
                 <input className='create-input'
                     type="text"
                     placeholder='Server Name'
@@ -95,7 +92,7 @@ const NewServerForm = ({setShowModal}) => {
             </label>
 
             <label>
-                <div>Server Img
+                <div className='form-input'>Server Img
                 <input className='create-input'
                     type="file"
                     accept='image/*'
@@ -103,7 +100,7 @@ const NewServerForm = ({setShowModal}) => {
                     />
                 </div>
             </label>
-            <button type='submit'>Create Server</button>
+            <button type='submit' disabled={errors.length}>Create Server</button>
         </form>
         </>
     )
