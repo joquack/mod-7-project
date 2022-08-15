@@ -1,8 +1,8 @@
+.splash-page {
+    color: #FFFFFF;
+}
+
 .banner-header {
-    /* display: flex;
-    align-items: flex-end;
-    width: 100vw;
-    height: auto; */
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -43,12 +43,33 @@
     text-anchor: none;
 }
 
-.footer a {
+.splash-page a {
     text-decoration: none;
     color: #FFFFFF;
 }
 
-.footer a:hover {
+.splash-page a:hover {
     text-decoration: underline;
     color: #FFFFFF;
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.top-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 10px;
+    width: 100%;
 }
