@@ -10,7 +10,7 @@ function SplashPage() {
     }
 
     const signUpButton = async e => {
-        history.push('/signup')
+        history.push('/sign-up')
     }
 
     return(

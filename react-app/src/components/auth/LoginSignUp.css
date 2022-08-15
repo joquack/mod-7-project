@@ -1,4 +1,6 @@
 .auth-form {
+    height: 95vh;
+    width: 99vw;
     margin-top: 30px;
     display: flex;
     flex-direction: column;

@@ -40,7 +40,6 @@ function App() {
         </Route>
 
         <Route path='/sign-up' exact={true}>
-          <NavBar />
           <SignUpForm />
         </Route>
 
