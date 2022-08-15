@@ -1,0 +1,16 @@
+.banner-header {
+    width: 100vw;
+    height: auto;
+}
+
+.banner-img-1 {
+    background: url('./1.svg');
+}
+
+.banner-img-2 {
+    background: url('./01.svg');
+}
+
+.banner-img-3 {
+    background: url('./2.svg');
+}
