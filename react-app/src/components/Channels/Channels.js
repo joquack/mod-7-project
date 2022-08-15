@@ -36,18 +36,26 @@ function ChannelList () {
                 {channels && channels.map(channel => {
                     return (
                         <>
-                            <NavLink to={`/channels/${serverId}/${channel.id}`} className='channel-link'>
-                                <h3>{channel.channel_name}</h3>
-                            </NavLink>
+                        <NavLink to={`/channels/${serverId}/${channel.id}`} className='channel-link'>
+                            <h3>{channel.channel_name}</h3>
+                        </NavLink>
                         </>
                     )
                 })}
             </div>
 
         </div>
-            <div className='sc-chatbox'>
-                <Chat />
-            </div>
+        {channels && channels.map(channel => {
+            return(
+                <>
+                <div className='sc-chatbox'>
+                    <Chat channel={channel}/>
+                </div>
+                </>
+            )
+        })}
+
+
         </div>
         </>
     )

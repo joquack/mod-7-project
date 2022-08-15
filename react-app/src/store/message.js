@@ -67,8 +67,6 @@ export const deleteMessage = messageId => async dispatch => {
         method: 'DELETE'
     })
 
-    console.log('REDUCEER HEREEEEEEEEEEEEEEEEEEEEE', response)
-
     if(response.ok){
         const deletedMessage = await response.json()
         dispatch(delete_message(deletedMessage))
@@ -81,7 +79,6 @@ export default function reducer(state = initialState, action) {
     let newState = {...state}
     switch (action.type) {
         case LOAD_MESSAGES:
-            console.log('load msgs reducer', action.payload)
             action.payload.messages.forEach(message => {
                 newState[message.id] = message
             })

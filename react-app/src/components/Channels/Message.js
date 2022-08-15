@@ -11,14 +11,10 @@ function Message({message}){
     const [chatInput, setChatInput] = useState(message.body);
     const [edit, setEdit] = useState(false)
     const {serverId, channelId} = useParams()
-    console.log('OVER EHEREREEEEE', message)
+    // console.log('OVER EHEREREEEEE', message)
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
-    }
-
-    const handleCancel = e => {
-        setEdit(false)
     }
 
     const handleUpdateMessage = async e => {
@@ -62,12 +58,11 @@ function Message({message}){
                         <button onClick={handleUpdateMessage}>Submit</button>
                         <button onClick={handleDeleteMessage}>Delete</button>
                     </form>
-
                 </div>}
 
-            {user && userId == message.user_id &&
-                    <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>}
-
+            {user && userId == message.user_id && !edit ?
+                    <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>
+                    : <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>}
         </div>
 
         </>

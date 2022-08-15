@@ -8,6 +8,7 @@
 .server-channels {
     display: flex;
     /* justify-content:auto; */
+    /* height:100vh; */
     flex-direction: row;
     background-color: #2F3136;
     width: 312px;
@@ -34,6 +35,7 @@
     width: 69vw;
     color: #FFFFFF;
     padding-left: 20px;
+    overflow-y: scroll;
 }
 
 .server-name {
@@ -64,6 +66,7 @@
     font-size: 16px;
     border-style: none;
     border-radius: 6px;
+    /* float: right; */
 }
 
 .asdf input {

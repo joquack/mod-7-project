@@ -7,7 +7,7 @@ import './channels.css'
 import { io } from 'socket.io-client';
 let socket;
 
-const Chat = () => {
+const Chat = ({channel}) => {
     const dispatch = useDispatch()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
@@ -75,8 +75,8 @@ const Chat = () => {
                 <input className="chat-input"
                     value={chatInput}
                     onChange={updateChatInput}
+                    placeholder={`Message #${channel.channel_name}`}
                 />
-                {/* <button type="submit">Send</button> */}
             </form>
         </div>
     )
