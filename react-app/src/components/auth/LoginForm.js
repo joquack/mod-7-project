@@ -8,11 +8,11 @@ const LoginForm = ({setShowModal}) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  const user = useSelector(state => state?.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
-    setShowModal(false)
+    // setShowModal(false)
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
