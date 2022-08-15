@@ -26,7 +26,7 @@ function Dashboard() {
                 <div>
                     <LogoutButton />
                 </div>
-                <h1>welcome to your dashboard</h1>
+                <h1>Welcome to your dashboard</h1>
             </div>
         </div>
         </>

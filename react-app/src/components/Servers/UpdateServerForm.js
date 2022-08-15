@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { updateServer, getAllServers, deleteServer } from '../../store/server';
@@ -16,6 +16,20 @@ const UpdateServerForm = ({ setShowModal, id }) => {
 
     const changeName = e => setName(e.target.value)
     const changeImg = e => setImg(e.target.files[0])
+
+    useEffect(() => {
+        let errArr = []
+        if(name.length == 0)
+            errArr.push('Name cannot be empty')
+
+        if(name.length > 255)
+            errArr.push('Name cannot be more than 255')
+
+        if(img && !((/\.(gif|jpe?g|pdf|png|)$/i).test(img.name)))
+            errArr.push('Not a valid file type')
+
+        setErrors(errArr)
+    }, [name, img])
 
     const handleupdateServer = async e => {
         e.preventDefault()
@@ -45,7 +59,8 @@ const UpdateServerForm = ({ setShowModal, id }) => {
 
     const handleDeleteServer = async e => {
         e.preventDefault()
-        await dispatch(deleteServer(id)).then(() => getAllServers())
+        await dispatch(deleteServer(id))
+        history.push('/channels/me')
         setShowModal(false)
     }
 
@@ -82,7 +97,7 @@ const UpdateServerForm = ({ setShowModal, id }) => {
                     />
                 </div>
             </label>
-            <button type='submit'>Update Server</button>
+            <button type='submit' disabled={errors.length}>Update Server</button>
             <button onClick={handleDeleteServer}>Delete Server</button>
         </form>
         </>
