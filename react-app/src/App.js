@@ -64,7 +64,6 @@ function App() {
 
         <ProtectedRoute path='/' exact={true}>
           <SplashPage />
-          <NavBar />
         </ProtectedRoute>
 
       </Switch>

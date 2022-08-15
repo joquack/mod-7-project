@@ -29,3 +29,26 @@
     width: 615px;
     height: 360px;
 }
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    background-color: #23272A;
+    padding-top: 10px;
+    text-anchor: none;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    color: #FFFFFF;
+}
