@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -10,6 +10,16 @@ const LoginForm = ({setShowModal}) => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state?.session.user);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   let errArr = []
+
+  //   if(!email.length)
+  //     errArr.push('Email cannot be empty')
+
+  //   if(!email.length)
+  //     errArr.push('Email cannot be empty')
+  // }, [email, password])
 
   const onLogin = async (e) => {
     // setShowModal(false)
@@ -37,7 +47,7 @@ const LoginForm = ({setShowModal}) => {
     <div className='auth-form'>
     <NavLink to={'/'} className='back-home'>Back Home</NavLink>
       <form onSubmit={onLogin}>
-        <div>
+        <div className='errors'>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}

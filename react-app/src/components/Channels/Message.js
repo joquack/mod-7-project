@@ -60,9 +60,11 @@ function Message({message}){
                     </form>
                 </div>}
 
-            {user && userId == message.user_id && !edit ?
-                    <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>
-                    : <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>}
+            {user && userId == message.user_id && !edit &&
+                    <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>}
+
+            {user && userId == message.user_id && edit &&
+                <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>}
         </div>
 
         </>

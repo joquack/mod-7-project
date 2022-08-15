@@ -21,7 +21,7 @@ const NewServerForm = ({setShowModal}) => {
             errArr.push('Name cannot be empty')
 
         if(name.length > 255)
-            errArr.push('Name cannot be more that 255')
+            errArr.push('Name cannot be more than 255')
 
         if(img && !((/\.(gif|jpe?g|pdf|png|)$/i).test(img.name)))
             errArr.push('Not a valid file type')

@@ -39,7 +39,7 @@
 
 .channel-link {
     height: 50px;
-    width: 1000px;
+    width: 100%;
     overflow: hidden;
     text-decoration: none;
     white-space: nowrap;
@@ -63,7 +63,7 @@
     border-radius: 6px;
 }
 
-.asdf input {
+.asdf input button{
     width: 100%;
 }
 

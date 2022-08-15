@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -13,8 +13,23 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    let errArr = []
+    if(!username.length)
+      errArr.push('Username cannot be empty')
+
+    if(!email.length)
+      errArr.push('Email cannot be empty')
+
+    if(password !== repeatPassword)
+      errArr.push('Passwords have to match')
+
+    setErrors(errArr)
+  }, [password, repeatPassword])
+
   const onSignUp = async (e) => {
     e.preventDefault();
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
@@ -48,7 +63,7 @@ const SignUpForm = () => {
     <div className='auth-form'>
       <NavLink to={'/'} className='back-home'>Back Home</NavLink>
       <form onSubmit={onSignUp}>
-        <div>
+        <div className='errors'>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
@@ -90,7 +105,7 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
-        <button type='submit'>Sign Up</button>
+        <button type='submit' disabled={errors.length}>Sign Up</button>
       </form>
     </div>
     </>
