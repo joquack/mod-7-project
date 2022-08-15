@@ -6,6 +6,12 @@ body {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+button {
+    background-color: grey;
+    color:white;
+    border: none;
+    border-radius: 10%;
+}
 .dashboard {
     position: absolute;
     display: flex;
