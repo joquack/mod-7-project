@@ -50,7 +50,5 @@ flask seed all
 
 ___
 
-![image](https://user-images.githubusercontent.com/79065322/184628516-05de6301-4fd3-4440-8021-a9a0caa31046.png)
-
 
 
