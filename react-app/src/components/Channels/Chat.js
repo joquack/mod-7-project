@@ -36,8 +36,6 @@ const Chat = ({channel}) => {
         })
     }, [])
 
-
-
     const sendChat = async (e) => {
         e.preventDefault()
         const data = {
