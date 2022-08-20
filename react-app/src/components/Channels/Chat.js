@@ -36,6 +36,8 @@ const Chat = ({channel}) => {
         })
     }, [])
 
+    //socket emit and then data thunk?
+
     const sendChat = async (e) => {
         e.preventDefault()
         const data = {
