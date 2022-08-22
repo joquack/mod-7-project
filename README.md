@@ -18,6 +18,7 @@ Link to live site: [https://quackord.herokuapp.com/](https://quackord.herokuapp.
  - Python
  - Flask
  - SQLAlchemy
+ - AWS
  - React
  - Redux
  - CSS
