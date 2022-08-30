@@ -38,14 +38,14 @@ const Chat = ({channel}) => {
 
     //socket emit and then data thunk?
 
-    const sendChat = async (e) => {
+    const sendChat = (e) => {
         e.preventDefault()
         const data = {
             user_id: user.id,
             channel_id: channelId,
             body: chatInput
         }
-        const newMessage = await dispatch(createMessage(data))
+        const newMessage = dispatch(createMessage(data))
 
         if(newMessage){
             socket.emit("chat", { user: user.username, msg: chatInput });
@@ -85,4 +85,3 @@ const Chat = ({channel}) => {
 
 
 export default Chat;
-
