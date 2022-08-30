@@ -11,16 +11,6 @@ const LoginForm = ({setShowModal}) => {
   const user = useSelector(state => state?.session.user);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   let errArr = []
-
-  //   if(!email.length)
-  //     errArr.push('Email cannot be empty')
-
-  //   if(!email.length)
-  //     errArr.push('Email cannot be empty')
-  // }, [email, password])
-
   const onLogin = async (e) => {
     // setShowModal(false)
     e.preventDefault();
