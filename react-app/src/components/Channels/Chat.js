@@ -22,21 +22,17 @@ const Chat = ({channel}) => {
     }
 
     useEffect(() => {
-        // open socket connection
-        // create websocket
         dispatch(getAllMessages())
         socket = io();
 
         socket.on("chat", (chat) => {
             setMessages(messages => [...messages, chat])
         })
-        // when component unmounts, disconnect
+
         return (() => {
             socket.disconnect()
         })
     }, [])
-
-    //socket emit and then data thunk?
 
     const sendChat = (e) => {
         e.preventDefault()
@@ -47,20 +43,11 @@ const Chat = ({channel}) => {
         }
         const newMessage = dispatch(createMessage(data))
 
-        if(newMessage){
-            socket.emit("chat", { user: user.username, msg: chatInput });
-        }
+        // if(newMessage){
+        // }
+        socket.emit("chat", { user: user.username, msg: chatInput });
         setChatInput("")
     }
-
-    // const handleEditMessage = async e => {
-    //     e.preventDefault()
-    //     const data = {
-    //         user_id: user.id,
-    //         channel_id: channelId,
-    //         body
-    //     }
-    // }
 
     return (user && (
         <div>
