@@ -43,8 +43,6 @@ const Chat = ({channel}) => {
         }
         const newMessage = dispatch(createMessage(data))
 
-        // if(newMessage){
-        // }
         socket.emit("chat", { user: user.username, msg: chatInput });
         setChatInput("")
     }
