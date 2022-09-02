@@ -34,17 +34,19 @@ const Chat = ({channel}) => {
         })
     }, [])
 
-    const sendChat = (e) => {
+    const sendChat = async (e) => {
         e.preventDefault()
         const data = {
             user_id: user.id,
             channel_id: channelId,
             body: chatInput
         }
-        const newMessage = dispatch(createMessage(data))
 
         socket.emit("chat", { user: user.username, msg: chatInput });
         setChatInput("")
+
+        const newMessage = await dispatch(createMessage(data))
+        .then(() => dispatch(getAllMessages()))
     }
 
     return (user && (

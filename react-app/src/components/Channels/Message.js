@@ -25,22 +25,16 @@ function Message({message}){
             body: chatInput
         }
 
-        const edittedMessage = await dispatch(updateMessage(data, message.id))
+        await dispatch(updateMessage(data, message.id))
+        .then(() => dispatch(getAllMessages()))
+        setEdit(false)
 
-        if(edittedMessage){
-            dispatch(getAllMessages())
-            setEdit(false)
-        }
     }
 
     const handleDeleteMessage = async e => {
         e.preventDefault()
-        const deletedMessage = await dispatch(deleteMessage(message.id))
-
-        if(deletedMessage){
-            dispatch(getAllMessages())
-            setEdit(false)
-        }
+        await dispatch(deleteMessage(message.id))
+        .then(() => dispatch(getAllMessages()))
     }
 
     return(
