@@ -15,11 +15,23 @@ const Chat = ({channel}) => {
     const user = useSelector(state => state.session.user)
     const userId = user.id
     const {serverId, channelId} = useParams()
-    const msgs = Object.values(useSelector(state => state.message)).filter(msg => msg.channels.server_id === Number(serverId))
+    const msgs = useSelector(state => state.message)
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     }
+
+    useEffect(() => {
+        if(!msgs) {
+            return
+        }
+
+        else{
+            let a = Object.values(msgs).filter(msg => msg.channels.server_id === Number(serverId))
+            console.log('HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', a)
+            setMessages(a)
+        }
+    }, [msgs])
 
     useEffect(() => {
         dispatch(getAllMessages())
@@ -42,19 +54,22 @@ const Chat = ({channel}) => {
             body: chatInput
         }
 
-        socket.emit("chat", { user: user.username, msg: chatInput });
+        socket.emit("chat", { user: user.username, msg: chatInput, room: channelId });
         setChatInput("")
 
         const newMessage = await dispatch(createMessage(data))
-        .then(() => dispatch(getAllMessages()))
+        // .then(() => dispatch(getAllMessages()))
     }
 
     return (user && (
         <div>
             <div>
-                {msgs && msgs.map((message, ind) => (
+                {messages && messages.map((message, ind) => (
                     <>
-                       <Message key={message.id} message={message}/>
+                       {/* <Message key={message.id} message={message.msg} username={message.user} /> */}
+                       <div>
+                        {message}
+                       </div>
                     </>
                 ))}
             </div>

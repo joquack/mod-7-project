@@ -4,11 +4,10 @@ import { useParams } from "react-router-dom";
 import { deleteMessage, getAllMessages, updateMessage } from "../../store/message";
 import './channels.css'
 
-function Message({message}){
+function Message({message, username}){
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const userId = user.id
-    const [chatInput, setChatInput] = useState(message.body);
+    const [chatInput, setChatInput] = useState(message);
     const [edit, setEdit] = useState(false)
     const {serverId, channelId} = useParams()
     // console.log('OVER EHEREREEEEE', message)
@@ -20,7 +19,7 @@ function Message({message}){
     const handleUpdateMessage = async e => {
         e.preventDefault()
         const data = {
-            user_id: userId,
+            user_id: user.id,
             channel_id: channelId,
             body: chatInput
         }
@@ -41,7 +40,7 @@ function Message({message}){
         <>
         {!edit &&
             <div>
-                {`${message.users.username}: ${message.body}`}
+                {`${username}: ${message}`}
             </div>}
 
         <div className="asdf">
@@ -54,11 +53,11 @@ function Message({message}){
                     </form>
                 </div>}
 
-            {user && userId == message.user_id && !edit &&
+            {/* {user.id == message.user_id && !edit &&
                     <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>}
 
-            {user && userId == message.user_id && edit &&
-                <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>}
+            {user.id == message.user_id && edit &&
+                <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>} */}
         </div>
 
         </>

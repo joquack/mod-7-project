@@ -34,36 +34,42 @@ const LoginForm = ({setShowModal}) => {
 
   return (
     <>
-    <div className='auth-form'>
-    <NavLink to={'/'} className='back-home'>Back Home</NavLink>
-      <form onSubmit={onLogin}>
-        <div className='errors'>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-          />
-          <button type='submit'>Login</button>
-        </div>
-      </form>
+    <div className='login-page'>
+      <div className='auth-form'>
+        <h1 className='login-big'>Welcome back!</h1>
+        <h4 className='login-small'>We're so excited to see you again</h4>
+        <form onSubmit={onLogin}>
+          <div className='errors'>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+              ))}
+          </div>
+          <div className='login-field'>
+            <label htmlFor='email' className='input-label'>Email <span className='required'>*</span> </label>
+            <input
+              className='login-input'
+              name='email'
+              type='text'
+              // placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+          <div className='login-field'>
+            <label htmlFor='password' className='input-label'>Password <span className='required'>*</span> </label>
+            <input
+              className='login-input'
+              name='password'
+              type='password'
+              // placeholder='Password'
+              value={password}
+              onChange={updatePassword}
+            />
+          </div>
+          <button className='login-button' type='submit'>Log In</button>
+          <NavLink to={'/'} className='back-home'>Back Home</NavLink>
+        </form>
+      </div>
     </div>
     </>
   );
