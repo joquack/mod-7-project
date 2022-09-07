@@ -21,8 +21,6 @@ const Chat = ({channel}) => {
         setChatInput(e.target.value)
     }
 
-
-
     useEffect(() => {
         if(!msgs) {
             return
@@ -46,7 +44,7 @@ const Chat = ({channel}) => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [dispatch, messages])
 
     const sendChat = async (e) => {
         e.preventDefault()
