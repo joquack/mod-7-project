@@ -30,7 +30,7 @@ const Chat = ({channel}) => {
 
         else {
             let a = Object.values(msgs).filter(msg => msg.channels.server_id === Number(serverId))
-            console.log('HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', a)
+            console.log('HEREEEEE', a)
             setMessages(a)
         }
     }, [msgs])
@@ -60,18 +60,19 @@ const Chat = ({channel}) => {
         setChatInput("")
 
         const newMessage = await dispatch(createMessage(data))
-        // .then(() => dispatch(getAllMessages()))
     }
+
+    console.log('OVER HEREEEEEEEEEEEEEEEEEEEE', messages)
 
     return (user && (
         <div>
             <div>
                 {messages && messages.map((message, ind) => (
                     <>
-                       {/* <Message key={message.id} message={message.msg} username={message.user} /> */}
-                       <div>
+                       <Message key={message.id} message={message} />
+                       {/* <div>
                         {message}
-                       </div>
+                       </div> */}
                     </>
                 ))}
             </div>

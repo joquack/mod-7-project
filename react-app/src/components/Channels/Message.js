@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { deleteMessage, getAllMessages, updateMessage } from "../../store/message";
 import './channels.css'
 
-function Message({message, username}){
+function Message({message}){
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const [chatInput, setChatInput] = useState(message);
@@ -40,7 +40,7 @@ function Message({message, username}){
         <>
         {!edit &&
             <div>
-                {`${username}: ${message}`}
+                {` ${message.users.username}:${message.body}`}
             </div>}
 
         <div className="asdf">
@@ -53,11 +53,11 @@ function Message({message, username}){
                     </form>
                 </div>}
 
-            {/* {user.id == message.user_id && !edit &&
+            {user.id == message.user_id && !edit &&
                     <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>}
 
             {user.id == message.user_id && edit &&
-                <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>} */}
+                <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>}
         </div>
 
         </>
