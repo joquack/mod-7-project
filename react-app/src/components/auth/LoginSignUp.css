@@ -1,12 +1,26 @@
-.auth-form {
+.login-auth-form {
     height: 408px;
     width: 784px;
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #36393F;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 hsla(0,calc(var(--saturation-factor, 1)*0%),0%,.2)
+}
+
+.signup-auth-form {
+    height: 560px;
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #36393F;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 hsla(0,calc(var(--saturation-factor, 1)*0%),0%,.2)
 }
 
 .back-home {
@@ -29,7 +43,17 @@
     background-size: cover;
 }
 
-.login-input {
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('./login-img.png') no-repeat center fixed;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+}
+
+.signup-login-input {
     background-color: #202225;
     color: #B9BBBE;
     height: 14px;
@@ -40,7 +64,7 @@
     border-radius: 3px;
 }
 
-.login-field {
+.signup-login-field {
     display: flex;
     flex-direction: column;
 }
@@ -54,15 +78,15 @@
     font-size: 12px;
 }
 
-.login-big{
+.signup-login-big{
     color:#FFFFFF
 }
 
-.login-small{
+.signup-login-small{
     color: #A3A6AA
 }
 
-.login-button {
+.signup-login-button {
     background-color: #5865F2;
     height: 44px;
     width: 414px;
@@ -71,4 +95,17 @@
     font-size: 20px;
     border: none;
     border-radius: 3px;
+}
+
+.switch {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+}
+.switch-link {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    align-items: center;
+    margin-left: 5px;
 }

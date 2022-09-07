@@ -21,12 +21,14 @@ const Chat = ({channel}) => {
         setChatInput(e.target.value)
     }
 
+
+
     useEffect(() => {
         if(!msgs) {
             return
         }
 
-        else{
+        else {
             let a = Object.values(msgs).filter(msg => msg.channels.server_id === Number(serverId))
             console.log('HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', a)
             setMessages(a)
