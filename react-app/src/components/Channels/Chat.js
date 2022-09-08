@@ -9,17 +9,23 @@ let socket;
 
 const Chat = ({channel}) => {
     const dispatch = useDispatch()
+    const {serverId, channelId} = useParams()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [edit, setEdit] = useState(false)
     const user = useSelector(state => state.session.user)
-    const userId = user.id
-    const {serverId, channelId} = useParams()
     const msgs = useSelector(state => state.message)
+
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     }
+
+    useEffect(() => {
+        let errArr = []
+        if(chatInput.length > 4000)
+            errArr.push('Message cannot exceed 4000 characters!')
+    }, [chatInput])
 
     useEffect(() => {
         if(!msgs) {
@@ -28,7 +34,6 @@ const Chat = ({channel}) => {
 
         else {
             let a = Object.values(msgs).filter(msg => msg.channels.server_id === Number(serverId))
-            console.log('HEREEEEE', a)
             setMessages(a)
         }
     }, [msgs])
@@ -60,7 +65,7 @@ const Chat = ({channel}) => {
         const newMessage = await dispatch(createMessage(data))
     }
 
-    console.log('OVER HEREEEEEEEEEEEEEEEEEEEE', messages)
+    console.log('OVER HEREEEEEEEEEEEEEEEEEEEE', msgs)
 
     return (user && (
         <div>
@@ -68,9 +73,6 @@ const Chat = ({channel}) => {
                 {messages && messages.map((message, ind) => (
                     <>
                        <Message key={message.id} message={message} />
-                       {/* <div>
-                        {message}
-                       </div> */}
                     </>
                 ))}
             </div>

@@ -7,10 +7,9 @@ import './channels.css'
 function Message({message}){
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const [chatInput, setChatInput] = useState(message);
+    const [chatInput, setChatInput] = useState(message.body);
     const [edit, setEdit] = useState(false)
     const {serverId, channelId} = useParams()
-    // console.log('OVER EHEREREEEEE', message)
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
