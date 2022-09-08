@@ -109,3 +109,11 @@
     align-items: center;
     margin-left: 5px;
 }
+
+#root > div.signup-page > div > form > button {
+    margin:auto;
+}
+
+#root > div.login-page > div > form > button {
+    margin: auto;
+}
