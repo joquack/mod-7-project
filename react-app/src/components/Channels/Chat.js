@@ -82,7 +82,7 @@ const Chat = ({channel}) => {
                     onChange={updateChatInput}
                     placeholder={`Message #${channel.channel_name}`}
                 />
-                <div>adsfasdf</div>
+                <div>errors will go here</div>
             </form>
         </div>
     )
