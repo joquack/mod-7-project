@@ -97,6 +97,10 @@
     border-radius: 3px;
 }
 
+.signup-login-button:hover {
+    background-color: #4a56cf;;
+}
+
 .switch {
     display: flex;
     flex-direction: row;
@@ -116,4 +120,19 @@
 
 #root > div.login-page > div > form > button {
     margin: auto;
+}
+
+.logout {
+    background-color: #ED4245;
+    height: 40px;
+    width: 150px;
+    padding: 2px 16px;
+    color:#FFFFFF;
+    font-size: 20px;
+    border: none;
+    border-radius: 3px;
+}
+
+.logout:hover {
+    background-color: #c0383a;
 }

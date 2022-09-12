@@ -19,13 +19,20 @@ body {
     margin: 0;
 }
 
+.dashboard-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 95vw;
+}
+
 .d-nav {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     width: 90vw;
-    height: 50px;
+    /* height: 98vh; */
     margin: 10px;
 }
 .d-nav button {
@@ -41,4 +48,62 @@ body {
     flex-direction: row;
     justify-content: space-between;
     width: 1500px;
+}
+
+.d-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    width: 70%;
+}
+
+.maintenance {
+    color: rgba(227, 230, 70, 0.829);
+    margin-top: 60px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+}
+
+.d-avatar {
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.username-email {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.get-started {
+    margin-top: 50px;
+}
+
+.dashboard-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 101%;
+    background-color: #23272A;
+}
+
+.dashboard-footer a {
+    margin-left: 5px;
+    text-decoration: none;
+    color: #00AFF4;
+}
+
+.dashboard-footer a:hover {
+    text-decoration: underline;
+
 }
