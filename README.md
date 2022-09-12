@@ -52,4 +52,10 @@ flask seed all
 ___
 
 
+![image](https://user-images.githubusercontent.com/79065322/189582556-a2799cc8-315f-4a3e-b729-5c8e39341c8a.png)
 
+![image](https://user-images.githubusercontent.com/79065322/189582563-1d3df8f0-3244-47c4-8c8b-0ab100f381b6.png)
+
+![image](https://user-images.githubusercontent.com/79065322/189582659-5ba6b676-f50c-44c9-9cb3-90914c3033d1.png)
+
+![image](https://user-images.githubusercontent.com/79065322/189582726-026ee766-eba9-45f3-866c-fc03e44f2af2.png)
