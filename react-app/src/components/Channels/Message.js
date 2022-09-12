@@ -9,23 +9,38 @@ function Message({message}){
     const user = useSelector(state => state.session.user)
     const [chatInput, setChatInput] = useState(message.body);
     const [edit, setEdit] = useState(false)
+    const [errors, setErrors] = useState([])
     const {serverId, channelId} = useParams()
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     }
 
+    useEffect(() => {
+        let errArr = []
+        if(chatInput.length > 1000)
+            errArr.push('Message cannot exceed 1000 characters!')
+
+        setErrors(errArr)
+    }, [chatInput])
+
     const handleUpdateMessage = async e => {
         e.preventDefault()
-        const data = {
-            user_id: user.id,
-            channel_id: channelId,
-            body: chatInput
+        if(errors.length) {
+            return
         }
 
-        await dispatch(updateMessage(data, message.id))
-        .then(() => dispatch(getAllMessages()))
-        setEdit(false)
+        else {
+            const data = {
+                user_id: user.id,
+                channel_id: channelId,
+                body: chatInput
+            }
+
+            await dispatch(updateMessage(data, message.id))
+            .then(() => dispatch(getAllMessages()))
+            setEdit(false)
+        }
 
     }
 
@@ -43,9 +58,9 @@ function Message({message}){
             </div>
 
             <div className="message-stuff">
-                <div className="message-content">
+                <div>
                     {!edit &&
-                        <div>
+                        <div className="message-content">
                             {` ${message.users.username}: ${message.body}`}
                         </div>}
                 </div>
@@ -54,7 +69,10 @@ function Message({message}){
                     {edit &&
                         <div>
                             <form>
-                                <input className="chat-input" onChange={updateChatInput} value={chatInput}></input>
+                                <input className="edit-chat-input" onChange={updateChatInput} value={chatInput}></input>
+                                {errors &&
+                                    <div className="errors">{errors.map((error, i) => <div key={i}>{error}</div>)}</div>
+                                }
                                 <div className="delete-save">
                                     <button className="message-save" onClick={handleUpdateMessage}>Save</button>
                                     <button className="message-delete" onClick={handleDeleteMessage}>Delete</button>

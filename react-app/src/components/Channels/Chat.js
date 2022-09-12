@@ -13,6 +13,7 @@ const Chat = ({channel}) => {
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [edit, setEdit] = useState(false)
+    const [errors, setErrors] = useState([])
     const user = useSelector(state => state.session.user)
     const msgs = useSelector(state => state.message)
 
@@ -25,6 +26,8 @@ const Chat = ({channel}) => {
         let errArr = []
         if(chatInput.length > 1000)
             errArr.push('Message cannot exceed 1000 characters!')
+
+        setErrors(errArr)
     }, [chatInput])
 
     useEffect(() => {
@@ -53,16 +56,22 @@ const Chat = ({channel}) => {
 
     const sendChat = async (e) => {
         e.preventDefault()
-        const data = {
-            user_id: user.id,
-            channel_id: channelId,
-            body: chatInput
+        if(errors.length){
+            return
         }
+        else {
 
-        socket.emit("chat", { user: user.username, msg: chatInput, room: channelId });
-        setChatInput("")
+            const data = {
+                user_id: user.id,
+                channel_id: channelId,
+                body: chatInput
+            }
 
-        const newMessage = await dispatch(createMessage(data))
+            socket.emit("chat", { user: user.username, msg: chatInput, room: channelId });
+            setChatInput("")
+
+            const newMessage = await dispatch(createMessage(data))
+        }
     }
 
     console.log('OVER HEREEEEEEEEEEEEEEEEEEEE', msgs)
@@ -76,13 +85,16 @@ const Chat = ({channel}) => {
                     </>
                 ))}
             </div>
-            <form onSubmit={sendChat}>
+            <form onSubmit={sendChat} disabled={errors.length}>
                 <input className="chat-input"
                     value={chatInput}
                     onChange={updateChatInput}
                     placeholder={`Message #${channel.channel_name}`}
                 />
-                <div>errors will go here</div>
+                {errors &&
+                    <div className="errors">{errors.map((error, i) => <div key={i}>{error}</div>)}</div>
+                }
+                {!user && <button type="submit" disabled={errors.length}>send</button>}
             </form>
         </div>
     )

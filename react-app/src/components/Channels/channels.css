@@ -63,6 +63,17 @@
     border-radius: 6px;
 }
 
+.edit-chat-input {
+    background-color:#40444B;
+    width:1200px;
+    height: 40px;
+    overflow-wrap: break-word;
+    color: #B9BBBE;
+    font-size: 16px;
+    border-style: none;
+    border-radius: 6px;
+}
+
 .asdf input button{
     width: 100%;
 }
@@ -117,6 +128,7 @@
     height: 20px;
     color: #00AFF4;
     border-radius: 6px;
+    margin-right: 25px;
 }
 
 .message-delete {
@@ -131,7 +143,11 @@
 .delete-save {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     margin-top:10px;
     margin-bottom: 5px;
+}
+
+.message-content {
+    word-break: break-word;
 }
