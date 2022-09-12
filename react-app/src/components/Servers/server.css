@@ -155,3 +155,18 @@ form {
 .delete-server:hover {
     background-color: #c0383a;
 }
+
+.update-server-button {
+    background-color: #2D7D46;
+    color:#F6F6F7;
+    border: none;
+    border-radius: 20%;
+    max-width: fit-content;
+    padding: 10px 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.update-server-button:hover {
+    background-color: #215732;
+}

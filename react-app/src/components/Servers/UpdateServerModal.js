@@ -7,7 +7,7 @@ function UpdateServerModal({id}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Server Settings</button>
+      <button className='update-server-button' onClick={() => setShowModal(true)}>Edit Server</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <UpdateServerForm setShowModal={setShowModal} id={id}/>

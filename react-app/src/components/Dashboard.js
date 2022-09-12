@@ -25,9 +25,11 @@ function Dashboard() {
             </div>
 
             <div className='d-nav'>
-                <h1>Welcome to your dashboard</h1>
-                <div>
-                    <LogoutButton />
+                <div className='d-nav-top'>
+                    <h1>Welcome to your dashboard, {user.username}!</h1>
+                    <div>
+                        <LogoutButton />
+                    </div>
                 </div>
             </div>
         </div>

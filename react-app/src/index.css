@@ -35,3 +35,10 @@ body {
 #root > div.sidebar > div.server-channels > div.sc-channels {
     width: 312px;
 }
+
+.d-nav-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1500px;
+}

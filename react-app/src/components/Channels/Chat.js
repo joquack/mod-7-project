@@ -23,8 +23,8 @@ const Chat = ({channel}) => {
 
     useEffect(() => {
         let errArr = []
-        if(chatInput.length > 4000)
-            errArr.push('Message cannot exceed 4000 characters!')
+        if(chatInput.length > 1000)
+            errArr.push('Message cannot exceed 1000 characters!')
     }, [chatInput])
 
     useEffect(() => {
