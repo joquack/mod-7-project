@@ -68,39 +68,45 @@ const NewServerForm = ({setShowModal}) => {
 
     return (
         <>
-        <h2>Create Server</h2>
-        <form onSubmit={handleCreateServer}>
-            <div className='errors'>
-                <ul>
-                    {errors.map((error, i) => (
-                        <li key={i}>{error}</li>
-                    ))}
-                </ul>
+        <div className='create-server'>
+            <div className='create-server-customize'>
+                <div className='create-server-big'>Customize your server</div>
+                <div className='create-server-small'>Give your new server a personality with a name and an icon. You cannot change it...for now</div>
             </div>
-            <label>
-                <div className='form-input'>Server Name *
-                <input className='create-input'
-                    type="text"
-                    placeholder='Server Name'
-                    value={name}
-                    onChange={changeName}
-                    required
-                    />
-                    {imageLoading && <h4>Image loading...</h4>}
+            <form onSubmit={handleCreateServer}>
+                <div className='errors'>
+                    <ul>
+                        {errors.map((error, i) => (
+                            <li key={i}>{error}</li>
+                        ))}
+                    </ul>
                 </div>
-            </label>
+                <label>
+                    <div className='form-input'>Server Name <span className='required'>*</span>
+                    <input className='create-input'
+                        type="text"
+                        placeholder='Server Name'
+                        value={name}
+                        onChange={changeName}
+                        required
+                        />
+                        {imageLoading && <h4>Image loading...</h4>}
+                    </div>
+                </label>
 
-            <label>
-                <div className='form-input'>Server Img
-                <input className='create-input'
-                    type="file"
-                    accept='image/*'
-                    onChange={changeImg}
-                    />
-                </div>
-            </label>
-            <button type='submit' disabled={errors.length}>Create Server</button>
-        </form>
+                <label>
+                    <div>
+                        <div className='form-input-file'>Server Img</div>
+                        <input className='create-input-file'
+                            type="file"
+                            accept='image/*'
+                            onChange={changeImg}
+                            />
+                        </div>
+                </label>
+                {!errors.length && <button className='submit-server-button' type='submit' disabled={errors.length}>Create Server</button>}
+            </form>
+        </div>
         </>
     )
 }

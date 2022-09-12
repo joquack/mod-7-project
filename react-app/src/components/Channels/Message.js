@@ -55,8 +55,10 @@ function Message({message}){
                         <div>
                             <form>
                                 <input className="chat-input" onChange={updateChatInput} value={chatInput}></input>
-                                <button onClick={handleUpdateMessage}>Submit</button>
-                                <button onClick={handleDeleteMessage}>Delete</button>
+                                <div className="delete-save">
+                                    <button className="message-save" onClick={handleUpdateMessage}>Save</button>
+                                    <button className="message-delete" onClick={handleDeleteMessage}>Delete</button>
+                                </div>
                             </form>
                         </div>}
 

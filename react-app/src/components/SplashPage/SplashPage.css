@@ -85,6 +85,10 @@
     margin: 5px;
 }
 
+#root > div.splash-page > div.top > div > div.header-info > div.nav-buttons > button.logged-in {
+    width: 90px;
+}
+
 .header-info button:hover{
     color: #5865F2
 }

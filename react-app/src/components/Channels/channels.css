@@ -109,3 +109,29 @@
     width: 40px;
     height: 40px;
 }
+
+.message-save {
+    background-color: #292B2F;
+    border: none;
+    width: 60px;
+    height: 20px;
+    color: #00AFF4;
+    border-radius: 6px;
+}
+
+.message-delete {
+    background-color: #292B2F;
+    border: none;
+    width: 60px;
+    height: 20px;
+    color: #ED4245;
+    border-radius: 6px;
+}
+
+.delete-save {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top:10px;
+    margin-bottom: 5px;
+}

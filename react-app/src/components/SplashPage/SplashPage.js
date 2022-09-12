@@ -7,6 +7,7 @@ import './SplashPage.css'
 function SplashPage() {
     const history = useHistory()
     const dispatch = useDispatch()
+    const user = useSelector(state => state.session.user)
     const [credential, setCredential] = useState('demo@aa.io');
     const [password, setPassword] = useState('password');
 
@@ -15,7 +16,7 @@ function SplashPage() {
         await dispatch(sessionActions.login( credential, password ))
         history.push('/channels/me')
 
-      }
+    }
 
     const loginButton = async e => {
         history.push('/login')
@@ -23,6 +24,10 @@ function SplashPage() {
 
     const signUpButton = async e => {
         history.push('/sign-up')
+    }
+
+    const goBack = async e => {
+        history.push('/channels/me')
     }
 
     return(
@@ -43,9 +48,10 @@ function SplashPage() {
                         </div>
                         <a href='https://github.com/joquack/mod-7-project' target="_blank" rel="noopener noreferrer">Clone this repo</a>
                         <div className='nav-buttons'>
-                            <button onClick={loginButton}>Login</button>
-                            <button onClick={signUpButton}>Sign up</button>
-                            <button onClick={handleSubmit}>Demo</button>
+                            {!user && <button onClick={loginButton}>Login</button>}
+                            {!user && <button onClick={signUpButton}>Sign up</button>}
+                            {!user && <button onClick={handleSubmit}>Demo</button>}
+                            {user && <button className='logged-in' onClick={goBack}>Dashboard</button>}
                         </div>
                     </div>
                     <div className='splash-words'>

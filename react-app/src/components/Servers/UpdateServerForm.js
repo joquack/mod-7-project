@@ -89,16 +89,17 @@ const UpdateServerForm = ({ setShowModal, id }) => {
             </label>
 
             <label>
-                <div>Server Img
-                    <input className='create-input'
-                        type="file"
-                        accept='image/*'
-                        onChange={changeImg}
-                    />
-                </div>
+                    <div>
+                        <div className='form-input-file'>Server Img</div>
+                        <input className='create-input-file'
+                            type="file"
+                            accept='image/*'
+                            onChange={changeImg}
+                        />
+                    </div>
             </label>
-            <button type='submit' disabled={errors.length}>Update Server</button>
-            <button onClick={handleDeleteServer}>Delete Server</button>
+            <button className='update-server' type='submit' disabled={errors.length}>Update Server</button>
+            <button className='delete-server' onClick={handleDeleteServer}>Delete Server</button>
         </form>
         </>
     )

@@ -22,25 +22,27 @@ function ServerList() {
     return (
         <>
         <div className='server-list'>
-            <NavLink to={'/channels/me'}><img className='server-home' src='https://cdn-icons-png.flaticon.com/512/5968/5968759.png'></img></NavLink>
+            <div className='all-servers'>
+                <NavLink to={'/channels/me'}><img className='server-home' src='https://cdn-icons-png.flaticon.com/512/5968/5968759.png'></img></NavLink>
 
-            {servers && servers.map(server => {
-                return (
-                    <>
-                    <div key={server.id}>
-                        <NavLink to={`/channels/${server.id}`}>
-                            <img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img>
-                        </NavLink>
-                    </div>
-                    <div>
-                        {userId && server.user_id === userId ?
-                            <UpdateServerModal id={server.id}/>
-                            : <></>
-                        }
-                    </div>
-                    </>
-                )
-            })}
+                {servers && servers.map(server => {
+                    return (
+                        <>
+                        <div key={server.id}>
+                            <NavLink to={`/channels/${server.id}`}>
+                                <img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img>
+                            </NavLink>
+                        </div>
+                        <div>
+                            {userId && server.user_id === userId ?
+                                <UpdateServerModal id={server.id}/>
+                                : <></>
+                            }
+                        </div>
+                        </>
+                    )
+                })}
+            </div>
             <div><ServerFormModal /></div>
         </div>
         </>

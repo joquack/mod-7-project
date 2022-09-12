@@ -31,6 +31,7 @@
 }
 
 .errors {
+    list-style-type: none;
     color: tomato
 }
 
@@ -41,4 +42,116 @@ button {
 form {
     display: flex;
     flex-direction: column;
+}
+
+.all-servers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-server-button {
+    margin-top: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 24px;
+    text-align: center;
+    color: #3BA55D;
+    background-color: #36393F;
+    border: none;
+}
+
+.create-server-button:hover {
+    background-color: #3BA55D;
+    color: white;
+}
+
+.create-server {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-server-customize {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.create-server-big {
+    font-weight: bold;
+    font-size: 30px;
+
+}
+
+.create-server-small {
+    margin-top: 10px;
+}
+
+.create-input {
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    background-color: #202225;
+    color: #B9BBBE;
+    height: 14px;
+    width: 414px;
+    padding: 10px;
+    border: none;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.submit-server-button {
+    background-color: #5865F2;
+    color: #F6F6F7;
+    font-size: 14px;
+    font-weight: 530;
+    border: none;
+    border-radius: 6px;
+    width: 120px;
+    height: 40px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.submit-server-button:hover {
+    background-color: #4a56cf;
+}
+
+.update-server {
+    background-color: #5865F2;
+    color: #F6F6F7;
+    font-size: 14px;
+    font-weight: 530;
+    border: none;
+    border-radius: 6px;
+    width: 120px;
+    height: 40px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.update-server:hover {
+    background-color: #4a56cf;
+}
+
+.delete-server {
+    background-color: #ED4245;
+    color: #F6F6F7;
+    font-size: 14px;
+    font-weight: 530;
+    border: none;
+    border-radius: 6px;
+    width: 120px;
+    height: 40px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.delete-server:hover {
+    background-color: #c0383a;
 }

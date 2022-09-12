@@ -9,6 +9,8 @@ import NavBar from './NavBar';
 
 function Dashboard() {
     const dispatch = useDispatch()
+    const user = useSelector(state => state.session.user)
+    console.log('dashboard here',user)
 
     useEffect(() => {
         dispatch(getAllServers())
@@ -23,10 +25,10 @@ function Dashboard() {
             </div>
 
             <div className='d-nav'>
+                <h1>Welcome to your dashboard</h1>
                 <div>
                     <LogoutButton />
                 </div>
-                <h1>Welcome to your dashboard</h1>
             </div>
         </div>
         </>
