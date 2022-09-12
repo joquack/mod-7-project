@@ -31,3 +31,7 @@ body {
 .d-nav button {
     margin-top: 36px;
 }
+
+#root > div.sidebar > div.server-channels > div.sc-channels {
+    width: 312px;
+}

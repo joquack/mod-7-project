@@ -74,3 +74,38 @@
     font-size: 12px;
 }
 
+.server-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#root > div.sidebar > div.server-welcome > h1 {
+    text-align: center;
+    inline-size: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#root > div.sidebar > div.server-channels > div.sc-channels > h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-message {
+    display: flex;
+    flex-direction: row;
+    margin: 17px 0px;
+}
+
+.message-stuff {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.user-avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}

@@ -37,26 +37,36 @@ function Message({message}){
 
     return(
         <>
-        {!edit &&
+        <div className="user-message">
             <div>
-                {` ${message.users.username}:${message.body}`}
-            </div>}
+                <img className="user-avatar" src="https://archive.org/download/discordprofilepictures/discordblue.png"></img>
+            </div>
 
-        <div className="asdf">
-            {edit &&
-                <div>
-                    <form>
-                        <input className="chat-input" onChange={updateChatInput} value={chatInput}></input>
-                        <button onClick={handleUpdateMessage}>Submit</button>
-                        <button onClick={handleDeleteMessage}>Delete</button>
-                    </form>
-                </div>}
+            <div className="message-stuff">
+                <div className="message-content">
+                    {!edit &&
+                        <div>
+                            {` ${message.users.username}: ${message.body}`}
+                        </div>}
+                </div>
 
-            {user.id == message.user_id && !edit &&
-                    <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>}
+                <div className="edit-delete-message">
+                    {edit &&
+                        <div>
+                            <form>
+                                <input className="chat-input" onChange={updateChatInput} value={chatInput}></input>
+                                <button onClick={handleUpdateMessage}>Submit</button>
+                                <button onClick={handleDeleteMessage}>Delete</button>
+                            </form>
+                        </div>}
 
-            {user.id == message.user_id && edit &&
-                <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>}
+                    {user.id == message.user_id && !edit &&
+                            <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>}
+
+                    {user.id == message.user_id && edit &&
+                        <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>}
+                </div>
+            </div>
         </div>
 
         </>
