@@ -53,15 +53,6 @@ def add_server():
         db.session.add(new_server)
         db.session.commit()
 
-        # new_channel = Channel(
-        #     server_id = new_server.id,
-        #     channel_name = 'general',
-        #     description = 'general chat'
-        # )
-
-        # db.session.add(new_channel)
-        # db.session.commit()
-
         return new_server.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
