@@ -12,7 +12,7 @@ class Message(db.Model):
     edited = db.Column(db.Boolean, default=False)
 
     users = db.relationship('User', back_populates='messages', lazy='subquery')
-    channels = db.relationship('Channel', back_populates='messages')
+    channels = db.relationship('Channel', back_populates='messages', lazy='subquery')
 
     def to_dict(self):
         return {
