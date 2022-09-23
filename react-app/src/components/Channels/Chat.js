@@ -74,8 +74,6 @@ const Chat = ({channel}) => {
         }
     }
 
-    console.log('OVER HEREEEEEEEEEEEEEEEEEEEE', msgs)
-
     return (user && (
         <div>
             <div>
