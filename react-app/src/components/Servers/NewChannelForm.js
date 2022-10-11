@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { getAllChannels, createChannel } from '../../store/channel';
 
-const NewServerForm = ({setShowModal}) => {
+const NewChannelForm = ({setShowModal}) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
@@ -21,7 +21,7 @@ const NewServerForm = ({setShowModal}) => {
         if(name.length > 255)
             errArr.push('Name cannot be more than 255')
 
-        if(description.length > 255)
+        if(channelDescription.length > 255)
             errArr.push('Name cannot be more than 255')
 
         setErrors(errArr)
@@ -40,12 +40,12 @@ const NewServerForm = ({setShowModal}) => {
             description: channelDescription
         }
 
-        const createdServer = await dispatch(createServer(data))
-        await dispatch(getAllServers())
+        const createdChannel = await dispatch(createChannel(data))
+        await dispatch(getAllChannels())
 
-        if(createdServer && defaultChannel){
+        if(createdChannel){
             setShowModal(false)
-            history.push(`/channels/${createdServer.id}`)
+            history.push(`/channels/${serverId}/${createChannel.id}`)
         }
     }
 
@@ -95,4 +95,4 @@ const NewServerForm = ({setShowModal}) => {
     )
 }
 
-export default NewServerForm
+export default NewChannelForm

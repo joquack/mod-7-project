@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../context/Modal';
-import NewServerForm from './NewServerForm'
+import NewChannelForm from './NewChannelForm';
 
 function ChannelFormModal() {
   const [showModal, setShowModal] = useState(false);
@@ -10,7 +10,7 @@ function ChannelFormModal() {
       <button className='create-server-button' onClick={() => setShowModal(true)}>+</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <NewServerForm setShowModal={setShowModal}/>
+          <NewChannelForm setShowModal={setShowModal}/>
         </Modal>
       )}
     </>
