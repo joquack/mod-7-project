@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { getAllChannels, createChannel } from '../../store/channel';
 
 const NewServerForm = ({setShowModal}) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-    const userId = user.id
+    const {serverId} = useParams()
 
     const [name, setName] = useState('')
-    const [description, setDescription] = useState('');
+    const [channelDescription, setChannelDescription] = useState('');
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
@@ -25,38 +25,27 @@ const NewServerForm = ({setShowModal}) => {
             errArr.push('Name cannot be more than 255')
 
         setErrors(errArr)
-    }, [name, description])
+    }, [name, channelDescription])
 
     const changeName = e => setName(e.target.value)
-    const changeDescription = e => setDescription(e.target.value)
+    const changeDescription = e => setChannelDescription(e.target.value)
 
     const handleCreateChannel = async e => {
         e.preventDefault()
         setErrors([])
 
         const data = {
-            user_id: userId,
-            server_name: name,
-            server_img: img
+            server_id: serverId,
+            channel_name: name,
+            description: channelDescription
         }
 
         const createdServer = await dispatch(createServer(data))
         await dispatch(getAllServers())
 
-        if(createdServer){
-            const defaultChannelData = {
-                server_id: createdServer.id,
-                channel_name: 'general',
-                description: 'general chat'
-            }
-
-            const defaultChannel = await dispatch(createChannel(defaultChannelData))
-            await dispatch(getAllChannels())
-
-            if(createdServer && defaultChannel){
-                setShowModal(false)
-                history.push(`/channels/${createdServer.id}`)
-            }
+        if(createdServer && defaultChannel){
+            setShowModal(false)
+            history.push(`/channels/${createdServer.id}`)
         }
     }
 
@@ -64,10 +53,9 @@ const NewServerForm = ({setShowModal}) => {
         <>
         <div className='create-server'>
             <div className='create-server-customize'>
-                <div className='create-server-big'>Customize your server</div>
-                <div className='create-server-small'>Give your new server a personality with a name and an icon. You cannot change it...for now</div>
+                <div className='create-server-big'>Create Channel</div>
             </div>
-            <form onSubmit={handleCreateServer}>
+            <form onSubmit={handleCreateChannel}>
                 <div className='errors'>
                     <ul>
                         {errors.map((error, i) => (
@@ -76,29 +64,31 @@ const NewServerForm = ({setShowModal}) => {
                     </ul>
                 </div>
                 <label>
-                    <div className='form-input'>Server Name <span className='required'>*</span>
+                    <div className='form-input'>Channel Name <span className='required'>*</span>
                     <input className='create-input'
                         type="text"
-                        placeholder='Server Name'
+                        placeholder='Channel Name'
                         value={name}
                         onChange={changeName}
                         required
                         />
-                        {imageLoading && <h4>Image loading...</h4>}
+                        {/* {imageLoading && <h4>Image loading...</h4>} */}
                     </div>
                 </label>
 
                 <label>
                     <div>
-                        <div className='form-input-file'>Server Img</div>
-                        <input className='create-input-file'
-                            type="file"
-                            accept='image/*'
-                            onChange={changeImg}
-                            />
-                        </div>
+                        <div className='form-input-file'>Channel Description</div>
+                        <input className='create-input'
+                        type="text"
+                        placeholder='Channel Name'
+                        value={channelDescription}
+                        onChange={changeDescription}
+                        required
+                        />
+                    </div>
                 </label>
-                {!errors.length && <button className='submit-server-button' type='submit' disabled={errors.length}>Create Server</button>}
+                {!errors.length && <button className='submit-server-button' type='submit' disabled={errors.length}>Add New Channel</button>}
             </form>
         </div>
         </>
