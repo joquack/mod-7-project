@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom';
 import {getAllServers} from '../../store/server'
-import {getAllChannels} from '../../store/channel'
+import {getAllChannels, createChannel} from '../../store/channel'
 import ServerList from '../Servers/ServerList';
+import ChannelFormModal from './ChannelFormModal';
 
 function ServerHome () {
     const dispatch = useDispatch()
@@ -18,6 +19,7 @@ function ServerHome () {
         dispatch(getAllChannels())
     }, [dispatch])
 
+
     return (
         <>
         <div className='sidebar'>
@@ -29,6 +31,7 @@ function ServerHome () {
 
                     <div className='sc-channels'>
                         {server && <h3 className='server-name'>{server.server_name}</h3>}
+                        <ChannelFormModal />
                         {channels && channels.map(channel => {
                             return (
                                 <>
