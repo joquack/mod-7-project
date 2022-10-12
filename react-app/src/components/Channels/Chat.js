@@ -17,7 +17,6 @@ const Chat = ({channel}) => {
     const user = useSelector(state => state.session.user)
     const msgs = useSelector(state => state.message)
 
-
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     }

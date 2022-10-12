@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // import { NavLink, useParams, useHistory } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
 import {getAllServers} from '../../src/store/server'
 import {getAllChannels} from '../../src/store/channel'
 import ServerList from './Servers/ServerList';
 import LogoutButton from './auth/LogoutButton';
-import NavBar from './NavBar';
+
 
 function Dashboard() {
     const dispatch = useDispatch()
@@ -38,7 +38,7 @@ function Dashboard() {
 
                         <div className='user-details'>
                             <div>
-                                <img className="d-avatar" src="https://archive.org/download/discordprofilepictures/discordblue.png"></img>
+                                <img className="d-avatar" src="https://archive.org/download/discordprofilepictures/discordblue.png" alt='user-avatar'></img>
                             </div>
 
                             <div className='username-email'>
