@@ -20,7 +20,7 @@ function ChannelList () {
     const channels = Object.values(useSelector(state => state?.channel)).filter(channel => channel?.server_id === Number(serverId))
     const currentChannel = channels.filter(channel => channel.id == channelId)
 
-    console.log('CHANNELS OVER HERE',currentChannel)
+    console.log('CHANNELS OVER HERE',currentChannel[0])
 
     useEffect(() => {
         dispatch(getAllServers())
@@ -51,7 +51,7 @@ function ChannelList () {
 
         </div>
             <div className='sc-chatbox'>
-                <Chat channel={currentChannel}/>
+                <Chat channel={currentChannel[0]}/>
             </div>
         </div>
 
