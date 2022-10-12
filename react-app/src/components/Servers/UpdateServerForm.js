@@ -19,7 +19,7 @@ const UpdateServerForm = ({ setShowModal, id }) => {
 
     useEffect(() => {
         let errArr = []
-        if(name.length == 0)
+        if(name.length === 0)
             errArr.push('Name cannot be empty')
 
         if(name.length > 255)

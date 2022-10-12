@@ -25,7 +25,7 @@ const SignUpForm = () => {
       errArr.push('Passwords have to match')
 
     setErrors(errArr)
-  }, [password, repeatPassword])
+  }, [password, repeatPassword, email, username])
 
   const onSignUp = async (e) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import { NavLink, useParams, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {getAllServers} from '../../store/server'
 import {getAllChannels} from '../../store/channel'
 import ServerFormModal from './ServerFormModal'
@@ -12,7 +12,6 @@ function ServerList() {
     const user = useSelector(state => state.session.user)
     const userId = user.id
     const servers = Object.values(useSelector(state => state.server)).reverse()
-    const channels = Object.values(useSelector(state => state?.channel))
 
     useEffect(() => {
         dispatch(getAllServers())
@@ -23,14 +22,14 @@ function ServerList() {
         <>
         <div className='server-list'>
             <div className='all-servers'>
-                <NavLink to={'/channels/me'}><img className='server-home' src='https://cdn-icons-png.flaticon.com/512/5968/5968759.png'></img></NavLink>
+                <NavLink to={'/channels/me'}><img className='server-home' src='https://cdn-icons-png.flaticon.com/512/5968/5968759.png' alt='server-home'></img></NavLink>
 
                 {servers && servers.map(server => {
                     return (
                         <>
                         <div key={server.id}>
                             <NavLink to={`/channels/${server.id}`}>
-                                <img key={`${server.id}-img`}src={server.server_img} className='server-list-img'></img>
+                                <img key={`${server.id}`} src={server.server_img} className='server-list-img' alt={`server-${server.id}`}></img>
                             </NavLink>
                         </div>
                         <div>

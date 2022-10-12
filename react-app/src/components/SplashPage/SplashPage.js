@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session'
 import './SplashPage.css'
 
@@ -8,8 +8,8 @@ function SplashPage() {
     const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const [credential, setCredential] = useState('demo@aa.io');
-    const [password, setPassword] = useState('password');
+    const [credential] = useState('demo@aa.io');
+    const [password] = useState('password');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
