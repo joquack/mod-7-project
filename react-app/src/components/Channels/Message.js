@@ -10,7 +10,7 @@ function Message({message}){
     const [chatInput, setChatInput] = useState(message.body);
     const [edit, setEdit] = useState(false)
     const [errors, setErrors] = useState([])
-    const {serverId, channelId} = useParams()
+    const {channelId} = useParams()
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
@@ -54,7 +54,7 @@ function Message({message}){
         <>
         <div className="user-message">
             <div>
-                <img className="user-avatar" src="https://archive.org/download/discordprofilepictures/discordblue.png"></img>
+                <img className="user-avatar" src="https://archive.org/download/discordprofilepictures/discordblue.png" alt='user-avatar'></img>
             </div>
 
             <div className="message-stuff">
@@ -80,10 +80,10 @@ function Message({message}){
                             </form>
                         </div>}
 
-                    {user.id == message.user_id && !edit &&
+                    {user.id === message.user_id && !edit &&
                             <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Edit</button>}
 
-                    {user.id == message.user_id && edit &&
+                    {user.id === message.user_id && edit &&
                         <button className='cancel-edit' onClick={() => edit ? setEdit(false) : setEdit(true)}>Cancel</button>}
                 </div>
             </div>

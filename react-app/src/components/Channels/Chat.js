@@ -12,7 +12,7 @@ const Chat = ({channel}) => {
     const {serverId, channelId} = useParams()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
-    const [edit, setEdit] = useState(false)
+    // const [edit, setEdit] = useState(false)
     const [errors, setErrors] = useState([])
     const user = useSelector(state => state.session.user)
     const msgs = useSelector(state => state.message)
@@ -38,7 +38,7 @@ const Chat = ({channel}) => {
             let a = Object.values(msgs).filter(msg => msg.channels.server_id === Number(serverId))
             setMessages(a)
         }
-    }, [msgs])
+    }, [msgs, serverId])
 
     useEffect(() => {
         dispatch(getAllMessages())
@@ -68,7 +68,7 @@ const Chat = ({channel}) => {
             socket.emit("chat", { user: user.username, msg: chatInput, room: channelId });
             setChatInput("")
 
-            const newMessage = await dispatch(createMessage(data))
+            await dispatch(createMessage(data))
         }
     }
 

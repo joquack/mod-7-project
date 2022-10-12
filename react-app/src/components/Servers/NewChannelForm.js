@@ -6,7 +6,6 @@ import { getAllChannels, createChannel } from '../../store/channel';
 const NewChannelForm = ({setShowModal}) => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user)
     const {serverId} = useParams()
 
     const [name, setName] = useState('')
@@ -15,7 +14,7 @@ const NewChannelForm = ({setShowModal}) => {
 
     useEffect(() => {
         let errArr = []
-        if(name.length == 0)
+        if(name.length === 0)
             errArr.push('Name cannot be empty')
 
         if(name.length > 255)
