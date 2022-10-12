@@ -13,10 +13,14 @@ let socket;
 function ChannelList () {
     const dispatch = useDispatch()
     const {serverId} = useParams()
+    const {channelId} = useParams()
 
     const user = useSelector(state => state?.session.user)
     const server = Object.values(useSelector(state => state?.server)).filter(server => server?.id === Number(serverId))[0]
     const channels = Object.values(useSelector(state => state?.channel)).filter(channel => channel?.server_id === Number(serverId))
+    const currentChannel = channels.filter(channel => channel.id == channelId)
+
+    console.log('CHANNELS OVER HERE',currentChannel)
 
     useEffect(() => {
         dispatch(getAllServers())
@@ -44,19 +48,13 @@ function ChannelList () {
                 })}
             </div>
 
-        </div>
-        {channels && channels.map(channel => {
-            return(
-                <>
-                <div className='sc-chatbox'>
-                    <Chat channel={channel}/>
-                </div>
-                </>
-            )
-        })}
-
 
         </div>
+            <div className='sc-chatbox'>
+                <Chat channel={currentChannel}/>
+            </div>
+        </div>
+
         </>
     )
 }
