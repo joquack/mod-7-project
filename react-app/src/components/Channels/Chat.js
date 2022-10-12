@@ -60,7 +60,6 @@ const Chat = ({channel}) => {
             return
         }
         else {
-
             const data = {
                 user_id: user.id,
                 channel_id: channelId,

@@ -18,7 +18,7 @@ function ChannelList () {
     const user = useSelector(state => state?.session.user)
     const server = Object.values(useSelector(state => state?.server)).filter(server => server?.id === Number(serverId))[0]
     const channels = Object.values(useSelector(state => state?.channel)).filter(channel => channel?.server_id === Number(serverId))
-    const currentChannel = channels.filter(channel => channel.id == channelId)
+    const currentChannel = channels.filter(channel => channel?.id === Number(channelId))
 
     console.log('CHANNELS OVER HERE',currentChannel[0])
 
@@ -50,9 +50,11 @@ function ChannelList () {
 
 
         </div>
+        {currentChannel[0] &&
             <div className='sc-chatbox'>
                 <Chat channel={currentChannel[0]}/>
             </div>
+        }
         </div>
 
         </>
