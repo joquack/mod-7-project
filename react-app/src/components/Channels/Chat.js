@@ -13,6 +13,7 @@ const Chat = ({channel}) => {
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [errors, setErrors] = useState([])
+    const [searhInput, setSearchInput] = useState('')
     const user = useSelector(state => state.session.user)
     const msgs = useSelector(state => state.message)
 
@@ -73,24 +74,30 @@ const Chat = ({channel}) => {
 
     return (user && (
         <div>
-            <div>
-                {messages && messages.map((message, ind) => (
-                    <>
-                       <Message key={message.id} message={message} />
-                    </>
-                ))}
+            <div className="chatroom">
+                <div>
+                    {messages && messages.map((message, ind) => (
+                        <>
+                        <Message key={message.id} message={message} />
+                        </>
+                    ))}
+                </div>
+                <form onSubmit={sendChat} disabled={errors.length}>
+                    <input className="chat-input"
+                        value={chatInput}
+                        onChange={updateChatInput}
+                        placeholder={`Message #${channel.channel_name}`}
+                    />
+                    {errors &&
+                        <div className="errors">{errors.map((error, i) => <div key={i}>{error}</div>)}</div>
+                    }
+                    {!user && <button type="submit" disabled={errors.length}>send</button>}
+                </form>
+
+                <div className="searchbox">
+                    <input className='searchbox' placeholder='Looking for a photo?' onChange={e => setSearchInput(e.target.value)}/>
+                </div>
             </div>
-            <form onSubmit={sendChat} disabled={errors.length}>
-                <input className="chat-input"
-                    value={chatInput}
-                    onChange={updateChatInput}
-                    placeholder={`Message #${channel.channel_name}`}
-                />
-                {errors &&
-                    <div className="errors">{errors.map((error, i) => <div key={i}>{error}</div>)}</div>
-                }
-                {!user && <button type="submit" disabled={errors.length}>send</button>}
-            </form>
         </div>
     )
     )
