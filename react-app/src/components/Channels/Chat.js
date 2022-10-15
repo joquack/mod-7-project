@@ -12,7 +12,6 @@ const Chat = ({channel}) => {
     const {serverId, channelId} = useParams()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
-    // const [edit, setEdit] = useState(false)
     const [errors, setErrors] = useState([])
     const user = useSelector(state => state.session.user)
     const msgs = useSelector(state => state.message)
