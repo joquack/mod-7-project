@@ -76,7 +76,14 @@ const Chat = ({channel}) => {
         <div>
 
             <div>
-                {messages && messages.map((message, ind) => (
+                {messages && messages.filter(message => {
+                    if (searhInput === '')
+                        return message
+
+                    if (message.body.toLowerCase().includes(searhInput.toLowerCase()))
+                        return message
+
+                }).map((message, ind) => (
                     <>
                        <Message key={message.id} message={message} />
                     </>

@@ -165,8 +165,10 @@
     width: 120px;
     height: 20px;
     padding: 2px 5px;
+    border-radius: 4px;
 }
 
 .searchbox:focus {
     width: 150px;
+    outline: none;
 }
