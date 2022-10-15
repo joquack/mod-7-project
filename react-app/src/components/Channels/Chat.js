@@ -74,29 +74,28 @@ const Chat = ({channel}) => {
 
     return (user && (
         <div>
-            <div className="chatroom">
-                <div>
-                    {messages && messages.map((message, ind) => (
-                        <>
-                        <Message key={message.id} message={message} />
-                        </>
-                    ))}
-                </div>
-                <form onSubmit={sendChat} disabled={errors.length}>
-                    <input className="chat-input"
-                        value={chatInput}
-                        onChange={updateChatInput}
-                        placeholder={`Message #${channel.channel_name}`}
-                    />
-                    {errors &&
-                        <div className="errors">{errors.map((error, i) => <div key={i}>{error}</div>)}</div>
-                    }
-                    {!user && <button type="submit" disabled={errors.length}>send</button>}
-                </form>
 
-                <div className="searchbox">
-                    <input className='searchbox' placeholder='Looking for a photo?' onChange={e => setSearchInput(e.target.value)}/>
-                </div>
+            <div>
+                {messages && messages.map((message, ind) => (
+                    <>
+                       <Message key={message.id} message={message} />
+                    </>
+                ))}
+            </div>
+            <form onSubmit={sendChat} disabled={errors.length}>
+                <input className="chat-input"
+                    value={chatInput}
+                    onChange={updateChatInput}
+                    placeholder={`Message #${channel.channel_name}`}
+                />
+                {errors &&
+                    <div className="errors">{errors.map((error, i) => <div key={i}>{error}</div>)}</div>
+                }
+                {!user && <button type="submit" disabled={errors.length}>send</button>}
+            </form>
+
+            <div className="search">
+                <input className='searchbox' placeholder='Search' onChange={e => setSearchInput(e.target.value)}/>
             </div>
         </div>
     )

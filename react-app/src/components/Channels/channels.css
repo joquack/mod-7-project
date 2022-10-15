@@ -151,3 +151,22 @@
 .message-content {
     word-break: break-word;
 }
+
+.search {
+    position: absolute;
+    top: 30px;
+    right: 60px;
+}
+
+.searchbox {
+    background-color: #18191C;
+    color: #B9BBBE;
+    border: none;
+    width: 120px;
+    height: 20px;
+    padding: 2px 5px;
+}
+
+.searchbox:focus {
+    width: 150px;
+}
