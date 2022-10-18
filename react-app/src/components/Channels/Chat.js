@@ -16,6 +16,7 @@ const Chat = ({channel}) => {
     const [searhInput, setSearchInput] = useState('')
     const user = useSelector(state => state.session.user)
     const msgs = useSelector(state => state.message)
+    console.log('over hereeeeeeeeeee', msgs)
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
@@ -35,10 +36,10 @@ const Chat = ({channel}) => {
         }
 
         else {
-            let a = Object.values(msgs).filter(msg => msg.channels.server_id === Number(serverId))
+            let a = Object.values(msgs).filter(msg => msg.channel_id === Number(channelId))
             setMessages(a)
         }
-    }, [msgs, serverId])
+    }, [msgs, channelId])
 
     useEffect(() => {
         dispatch(getAllMessages())
