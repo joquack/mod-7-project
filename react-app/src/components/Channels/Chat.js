@@ -76,6 +76,7 @@ const Chat = ({channel}) => {
         <div>
 
             <div>
+                {/* eslint-disable-next-line*/}
                 {messages && messages.filter(message => {
                     if (searhInput === '')
                         return message
