@@ -9,14 +9,13 @@ let socket;
 
 const Chat = ({channel}) => {
     const dispatch = useDispatch()
-    const {serverId, channelId} = useParams()
+    const {channelId} = useParams()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [errors, setErrors] = useState([])
     const [searhInput, setSearchInput] = useState('')
     const user = useSelector(state => state.session.user)
     const msgs = useSelector(state => state.message)
-    console.log('over hereeeeeeeeeee', msgs)
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
